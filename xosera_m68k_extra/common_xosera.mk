@@ -58,7 +58,7 @@ mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 current_dir := $(notdir $(patsubst %/,%,$(dir $(mkfile_path))))
 
 ifndef COPASM
-ifeq (,$(shell xosera-copasm -h >/dev/null 2>&1))
+ifeq (,$(shell which xosera-copasm))
 COPASM=$(XOSERA_EXTRA)/../xosera_m68k_api/bin/xosera-copasm
 else
 COPASM=xosera-copasm
@@ -83,7 +83,7 @@ XOSERA_M68K_LIB=$(ROSCO_M68K_LIBRARIES)
 endif
 endif
 
-$(info === XOSERA build:  XOSERA_M68K_INCLUDE=$(XOSERA_M68K_INCLUDE), XOSERA_M68K_LIB=$(XOSERA_M68K_LIB), copasm=$(COPASM))
+$(info === XOSERA build:  XOSERA_M68K_INCLUDE=$(XOSERA_M68K_INCLUDE), XOSERA_M68K_LIB=$(XOSERA_M68K_LIB), COPPER asm=$(COPASM))
 
 # GCC-version-specific settings
 ifneq ($(findstring GCC,$(shell $(CC) --version 2>/dev/null)),)
