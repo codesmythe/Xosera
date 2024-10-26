@@ -13,8 +13,10 @@ XOSERA_EXTRA?=../xosera_m68k_extra
 
 PROGRAM_BASENAME=xosera
 BUILDING_XOSERA_API=true
+TO_CLEAN=new.txt existing.txt
 # LTO is unwanted when making a library (strips things we may want later)
 LTO=
+ARFLAGS=rDcs
 
 # use generic common make rules for Xosera + rosco_m68k build
 include $(XOSERA_EXTRA)/common_xosera.mk
@@ -23,16 +25,42 @@ CINCLUDES=rosco_m68k/xosera.h rosco_m68k/xosera_defs.h rosco_m68k/xosera_defs.in
 LIBRARY=rosco_m68k/lib$(PROGRAM_BASENAME).a
 LINKOBJECTS=$(filter-out api_test.o,$(OBJECTS))
 
-all: prereq $(COPASM) $(LIBRARY) $(BINARY) $(DISASM)
+all: checklib $(LIBRARY) $(BINARY) $(DISASM)
 
-prereq:
-	@echo === Building xosera-copasm COPPER assembler...
-	cd ../copper/CopAsm/ && $(MAKE)
+.PHONY: checklib
+checklib: $(LIBRARY)
+	@if \
+	 cmp -s rosco_m68k/xosera.h $(ROSCO_M68K_INCLUDES)/rosco_m68k/xosera.h ; \
+	then \
+	 echo "rosco_m68k/xosera.h unchanged" ; \
+	else \
+	 echo "rosco_m68k/xosera.h modified" ; \
+	fi
+	@if \
+	 cmp -s rosco_m68k/xosera_defs.h $(ROSCO_M68K_INCLUDES)/rosco_m68k/xosera_defs.h ; \
+	then \
+	 echo "rosco_m68k/xosera_defs.h unchanged" ; \
+	else \
+	 echo "rosco_m68k/xosera_defs.h modified" ; \
+	fi
+	@if \
+	 cmp -s rosco_m68k/xosera_defs.inc $(ROSCO_M68K_INCLUDES)/rosco_m68k/xosera_defs.inc ; \
+	then \
+	 echo "rosco_m68k/xosera_defs.inc unchanged" ; \
+	else \
+	 echo "rosco_m68k/xosera_defs.inc modified" ; \
+	fi
+	@if \
+	 $(NM) --size $(LIBRARY) >new.txt
+	 $(NM) --size $(ROSCO_M68K_LIBRARIES)/libxosera.a >existing.txt
+	 diff -u new.txt existing.txt
+	then \
+	 echo "$(LIBRARY) unchanged" ; \
+	else \
+	 echo "$(LIBRARY) modified" ; \
+	fi
 
-$(LIBRARY): $(LINKOBJECTS) $(CINCLUDES) $(MAKEFILE_LIST)
-	$(RM) $@
-	$(AR) $(ARFLAGS) $@ $^
-	$(RANLIB) $@
+installlib:
 	@if \
 	 cmp -s rosco_m68k/xosera.h $(ROSCO_M68K_INCLUDES)/rosco_m68k/xosera.h ; \
 	then \
@@ -68,3 +96,6 @@ $(LIBRARY): $(LINKOBJECTS) $(CINCLUDES) $(MAKEFILE_LIST)
 	 sudo cp -v rosco_m68k/xosera_defs.inc $(ROSCO_M68K_INCLUDES)/rosco_m68k ; \
 	 sudo cp -v $(LIBRARY) $(ROSCO_M68K_LIBRARIES) ; \
 	fi
+
+$(LIBRARY): $(LINKOBJECTS) $(CINCLUDES) $(MAKEFILE_LIST)
+	$(AR) $(ARFLAGS) $@ $(LINKOBJECTS)
