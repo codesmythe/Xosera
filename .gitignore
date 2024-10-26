@@ -87,3 +87,5 @@ copper/copper_test_m68k/color_bar_table.h
 
 xosera_ansiterm_m68k/videoXoseraANSI/rosco_m68k
 xosera_boing_m68k/boing_copper.h
+xosera_convert/lzsa/lzsa
+xosera_convert/xosera_convert

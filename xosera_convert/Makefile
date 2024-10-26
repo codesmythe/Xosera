@@ -24,6 +24,6 @@ clean:
 	cd lzsa && make clean
 
 % : %.cpp
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $< -o $@
+	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS)
 
 .PHONY: all clean
