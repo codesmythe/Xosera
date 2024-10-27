@@ -4,9 +4,9 @@
  |  Copyright (C) 2012 - 2024  Claire Xenia Wolf <claire@yosyshq.com>         |
  |  Distributed under an ISC-like license, type "license" to see terms        |
  \----------------------------------------------------------------------------/
- Yosys 0.45+148 (git sha1 1bf908dea, aarch64-apple-darwin21.4-clang++ 14.0.0-1ubuntu1.1 -fPIC -O3)
+ Yosys 0.46+124 (git sha1 d1695ad99, aarch64-apple-darwin21.4-clang++ 14.0.0-1ubuntu1.1 -fPIC -O3)
 
--- Running command `verilog_defines -DNO_ICE40_DEFAULT_ASSIGNMENTS -DGITCLEAN=0 -DGITHASH=d991774 -DBUILDDATE=20241006 -DFPGA_CONFIG_NUM=1 -DMODE_848x480 -DPMOD_DIGILENT_VGA -DEN_PF_B -DEN_AUDIO=4 -DICE40UP5K -DUPDUINO ; read_verilog -I. -sv upduino/xosera_upd.sv ./acia.sv ./acia_rx.sv ./acia_tx.sv ./audio_dac.sv ./audio_mem.sv ./audio_mixer_slim.sv ./blitter_slim.sv ./bus_interface.sv ./colormem.sv ./copper_slim.sv ./coppermem.sv ./pointermem.sv ./reg_interface.sv ./spi_target.sv ./tilemem.sv ./video_blend_2bit.sv ./video_blend_4bit.sv ./video_gen.sv ./video_playfield.sv ./video_timing.sv ./vram.sv ./vram_arb.sv ./xosera_main.sv ./xosera_pkg.sv ./xrmem_arb.sv ; scratchpad -copy abc9.script.flow3 abc9.script ; synth_ice40 -device u -no-rw-check -dff -top xosera_upd -json upduino/xosera_upd_aud4_vga_848x480.json' --
+-- Running command `verilog_defines -DNO_ICE40_DEFAULT_ASSIGNMENTS -DGITCLEAN=1 -DGITHASH=75de36f -DBUILDDATE=20241026 -DFPGA_CONFIG_NUM=1 -DMODE_848x480 -DPMOD_DIGILENT_VGA -DEN_PF_B -DEN_AUDIO=4 -DICE40UP5K -DUPDUINO ; read_verilog -I. -sv upduino/xosera_upd.sv ./acia.sv ./acia_rx.sv ./acia_tx.sv ./audio_dac.sv ./audio_mem.sv ./audio_mixer_slim.sv ./blitter_slim.sv ./bus_interface.sv ./colormem.sv ./copper_slim.sv ./coppermem.sv ./pointermem.sv ./reg_interface.sv ./spi_target.sv ./tilemem.sv ./video_blend_2bit.sv ./video_blend_4bit.sv ./video_gen.sv ./video_playfield.sv ./video_timing.sv ./vram.sv ./vram_arb.sv ./xosera_main.sv ./xosera_pkg.sv ./xrmem_arb.sv ; scratchpad -copy abc9.script.flow3 abc9.script ; synth_ice40 -device u -no-rw-check -dff -top xosera_upd -json upduino/xosera_upd_aud4_vga_848x480.json' --
 
 1. Executing Verilog-2005 frontend: upduino/xosera_upd.sv
 Parsing SystemVerilog input from `upduino/xosera_upd.sv' to AST representation.
@@ -122,7 +122,7 @@ Successfully finished Verilog frontend.
 24. Executing Verilog-2005 frontend: ./xosera_main.sv
 Parsing SystemVerilog input from `./xosera_main.sv' to AST representation.
 Generating RTLIL representation for module `\xosera_main'.
-   XOSERA xosera_info:    Xosera v0.40 20241006 >#0D991774 iCE40UP5K 128KB PF_B BLND COPP BLIT PIXA PNTR AUD4
+   XOSERA xosera_info:    Xosera v0.40 20241026 =#075DE36F iCE40UP5K 128KB PF_B BLND COPP BLIT PIXA PNTR AUD4
    XOSERA configuration:  MODE_848x480@60 PF_B BLND COPP BLIT PIXA PNTR AUD4 
 Successfully finished Verilog frontend.
 
@@ -6859,8 +6859,8 @@ Using template $paramod$131d9cfc3210129827c060c5b4059d991051439a\$__ICE40_RAM4K_
 Using template $paramod$d8436fa76fde42f66eaf92b728001c5be4af30f9\$__ICE40_RAM4K_ for cells of type $__ICE40_RAM4K_.
 Using template $paramod$bcef9b82972cc507f9e18b99cb9d6c8a445b50a4\$__ICE40_RAM4K_ for cells of type $__ICE40_RAM4K_.
 Using template $paramod$0252c4b0b7e048b05077e9fb5d2249120778bb23\$__ICE40_RAM4K_ for cells of type $__ICE40_RAM4K_.
-Using template $paramod$4acef3926926f317c70dd801fee259e889d39c56\$__ICE40_RAM4K_ for cells of type $__ICE40_RAM4K_.
-Using template $paramod$bf1c53f70df28c35c68da1fcddaf24d490474a54\$__ICE40_RAM4K_ for cells of type $__ICE40_RAM4K_.
+Using template $paramod$39797652f0bf8c218613d054f0171eb9a6903258\$__ICE40_RAM4K_ for cells of type $__ICE40_RAM4K_.
+Using template $paramod$5b870494de60d5d31b7f61c149e615c7c33bb308\$__ICE40_RAM4K_ for cells of type $__ICE40_RAM4K_.
 Using template $paramod$7823027dbf684d40c5eedeea82cc0a317c1ee338\$__ICE40_RAM4K_ for cells of type $__ICE40_RAM4K_.
 Using template $paramod$385303267beae408c8105c97b6bc1d50a76abbc6\$__ICE40_RAM4K_ for cells of type $__ICE40_RAM4K_.
 Using template $paramod$ac334883a942b3b1461157364f08e545ab8ada8b\$__ICE40_RAM4K_ for cells of type $__ICE40_RAM4K_.
@@ -6947,7 +6947,7 @@ Removed 0 multiplexer ports.
 
 27.29.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
   Optimizing cells in module \xosera_upd.
-    New input vector for $reduce_or cell $auto$opt_dff.cc:254:combine_resets$14884: { $auto$rtlil.cc:2493:Not$16024 $auto$rtlil.cc:2496:ReduceAnd$16020 \xosera_main.video_gen.video_timing.end_of_line \reset }
+    New input vector for $reduce_or cell $auto$opt_dff.cc:254:combine_resets$14884: { $auto$rtlil.cc:2724:Not$16024 $auto$rtlil.cc:2727:ReduceAnd$16020 \xosera_main.video_gen.video_timing.end_of_line \reset }
     Consolidated identical input bits for $mux cell $flatten\xosera_main.\blitter.$procmux$13300:
       Old ports: A=3'011, B=3'100, Y=$auto$wreduce.cc:461:run$15968 [2:0]
       New ports: A=2'01, B=2'10, Y={ $auto$wreduce.cc:461:run$15968 [2] $auto$wreduce.cc:461:run$15968 [0] }
@@ -7853,37 +7853,37 @@ Finding unused cells or wires in module \SB_DFFSS..
 
 27.41.9.2. Continuing SUBMOD pass.
 Creating submodule $abc9_flop (\SB_DFF_$abc9_flop) of module \SB_DFF.
-  signal \Q: input \Q
-  signal \D: input \D
-  signal \C: input \C
   signal $auto$abc9_ops.cc:506:prep_dff_submod$46404: output \n1
+  signal \C: input \C
+  signal \D: input \D
+  signal \Q: input \Q
   cell $specify$1490 ($specify3)
   cell $specify$1489 ($specrule)
   cell $auto$abc9_ops.cc:507:prep_dff_submod$46405 ($_MUX_)
 Creating submodule $abc9_flop (\SB_DFFE_$abc9_flop) of module \SB_DFFE.
+  signal $auto$abc9_ops.cc:506:prep_dff_submod$46406: output \n1
   signal \Q: input \Q
   signal \E: input \E
   signal \D: input \D
   signal \C: input \C
   signal $0\Q[0:0]: internal
-  signal $auto$abc9_ops.cc:506:prep_dff_submod$46406: output \n1
   cell $specify$1493 ($specify3)
   cell $specify$1492 ($specrule)
   cell $specify$1491 ($specrule)
   cell $auto$simplemap.cc:267:simplemap_mux$46401 ($_MUX_)
   cell $auto$abc9_ops.cc:507:prep_dff_submod$46407 ($_MUX_)
 Creating submodule $abc9_flop (\SB_DFFESR_$abc9_flop) of module \SB_DFFESR.
-  signal $logic_and$/Users/kenj/Dev/oss-cad-suite/libexec/../share/yosys/ice40/cells_sim.v:646$1674_Y: internal
-  signal $logic_and$/Users/kenj/Dev/oss-cad-suite/libexec/../share/yosys/ice40/cells_sim.v:647$1676_Y: internal
-  signal $logic_not$/Users/kenj/Dev/oss-cad-suite/libexec/../share/yosys/ice40/cells_sim.v:647$1675_Y: internal
-  signal $procmux$8000_Y: internal
-  signal $0\Q[0:0]: internal
-  signal \Q: input \Q
-  signal \C: input \C
-  signal \E: input \E
-  signal \R: input \R
-  signal \D: input \D
   signal $auto$abc9_ops.cc:506:prep_dff_submod$46408: output \n1
+  signal $logic_and$/Users/kenj/Dev/oss-cad-suite/libexec/../share/yosys/ice40/cells_sim.v:646$1674_Y: internal
+  signal $0\Q[0:0]: internal
+  signal $logic_and$/Users/kenj/Dev/oss-cad-suite/libexec/../share/yosys/ice40/cells_sim.v:647$1676_Y: internal
+  signal $procmux$8000_Y: internal
+  signal $logic_not$/Users/kenj/Dev/oss-cad-suite/libexec/../share/yosys/ice40/cells_sim.v:647$1675_Y: internal
+  signal \C: input \C
+  signal \D: input \D
+  signal \E: input \E
+  signal \Q: input \Q
+  signal \R: input \R
   cell $specify$1514 ($specify3)
   cell $specify$1513 ($specify3)
   cell $specify$1512 ($specrule)
@@ -7896,10 +7896,10 @@ Creating submodule $abc9_flop (\SB_DFFESR_$abc9_flop) of module \SB_DFFESR.
   cell $auto$simplemap.cc:196:simplemap_lognot$46398 ($_NOT_)
   cell $auto$abc9_ops.cc:507:prep_dff_submod$46409 ($_MUX_)
 Creating submodule $abc9_flop (\SB_DFFESS_$abc9_flop) of module \SB_DFFESS.
+  signal $auto$abc9_ops.cc:506:prep_dff_submod$46410: output \n1
   signal $0\Q[0:0]: internal
   signal $logic_and$/Users/kenj/Dev/oss-cad-suite/libexec/../share/yosys/ice40/cells_sim.v:787$1683_Y: internal
   signal $logic_and$/Users/kenj/Dev/oss-cad-suite/libexec/../share/yosys/ice40/cells_sim.v:788$1685_Y: internal
-  signal $auto$abc9_ops.cc:506:prep_dff_submod$46410: output \n1
   signal $logic_not$/Users/kenj/Dev/oss-cad-suite/libexec/../share/yosys/ice40/cells_sim.v:788$1684_Y: internal
   signal $procmux$7993_Y: internal
   signal \C: input \C
@@ -7919,13 +7919,13 @@ Creating submodule $abc9_flop (\SB_DFFESS_$abc9_flop) of module \SB_DFFESS.
   cell $auto$simplemap.cc:196:simplemap_lognot$46392 ($_NOT_)
   cell $auto$abc9_ops.cc:507:prep_dff_submod$46411 ($_MUX_)
 Creating submodule $abc9_flop (\SB_DFFSR_$abc9_flop) of module \SB_DFFSR.
+  signal $auto$abc9_ops.cc:506:prep_dff_submod$46412: output \n1
   signal $0\Q[0:0]: internal
+  signal $logic_not$/Users/kenj/Dev/oss-cad-suite/libexec/../share/yosys/ice40/cells_sim.v:394$1662_Y: internal
   signal \C: input \C
+  signal \D: input \D
   signal \Q: input \Q
   signal \R: input \R
-  signal $logic_not$/Users/kenj/Dev/oss-cad-suite/libexec/../share/yosys/ice40/cells_sim.v:394$1662_Y: internal
-  signal \D: input \D
-  signal $auto$abc9_ops.cc:506:prep_dff_submod$46412: output \n1
   cell $specify$1497 ($specify3)
   cell $specify$1496 ($specify3)
   cell $specify$1495 ($specrule)
@@ -7934,13 +7934,13 @@ Creating submodule $abc9_flop (\SB_DFFSR_$abc9_flop) of module \SB_DFFSR.
   cell $auto$simplemap.cc:196:simplemap_lognot$46387 ($_NOT_)
   cell $auto$abc9_ops.cc:507:prep_dff_submod$46413 ($_MUX_)
 Creating submodule $abc9_flop (\SB_DFFSS_$abc9_flop) of module \SB_DFFSS.
-  signal \S: input \S
+  signal $auto$abc9_ops.cc:506:prep_dff_submod$46414: output \n1
   signal \D: input \D
   signal \C: input \C
-  signal $0\Q[0:0]: internal
   signal $logic_not$/Users/kenj/Dev/oss-cad-suite/libexec/../share/yosys/ice40/cells_sim.v:515$1668_Y: internal
+  signal \S: input \S
   signal \Q: input \Q
-  signal $auto$abc9_ops.cc:506:prep_dff_submod$46414: output \n1
+  signal $0\Q[0:0]: internal
   cell $specify$1505 ($specify3)
   cell $specify$1504 ($specify3)
   cell $specify$1503 ($specrule)
@@ -8173,8 +8173,8 @@ Module xosera_upd: replaced 4980 cells with 29714 new cells, skipped 9420 cells.
        1 $paramod$9afc244c5f6012269448954e8a55e7f7bbd372c4\SB_RAM40_4K
        1 $paramod$b0ef1672242ca073e27257a125b4452e30f99550\SB_RAM40_4K
        1 $paramod$97332f4c007628366508637405e6a5cafabf9c5b\SB_RAM40_4K
-       1 $paramod$865d17fd2f550be672b887cbde16afc334262fbb\SB_RAM40_4K
-       1 $paramod$3d4d76a7c19f835f9d05b33ed7737303f02ca444\SB_RAM40_4K
+       1 $paramod$ac3ea0f621721c765e92f2409a55ce21d0311609\SB_RAM40_4K
+       1 $paramod$06c45b8669dd2d621fe7a94c8ac0d817dad4ff58\SB_RAM40_4K
        1 $paramod$fb64d9954e07541928ca9b36b13b92278f46b27e\SB_RAM40_4K
        1 $paramod$935cdf74fbbd2275daa33632b74de5af5882b288\SB_RAM40_4K
        1 $paramod$8a6c78f32887384822bc76ea2c613edf64941ddf\SB_RAM40_4K
@@ -8222,7 +8222,7 @@ ABC: + &syn2
 ABC: + &if -W 750 -v 
 ABC: K = 4. Memory (bytes): Truth =    0. Cut =   52. Obj =  136. Set =  564. CutMin = no
 ABC: Node =    9559.  Ch =     0.  Total mem =    5.47 MB. Peak cut mem =    0.13 MB.
-ABC: P:  Del = 10406.00.  Ar =    3955.0.  Edge =    14115.  Cut =    44934.  T =     0.01 sec
+ABC: P:  Del = 10406.00.  Ar =    3955.0.  Edge =    14115.  Cut =    44934.  T =     0.00 sec
 ABC: P:  Del = 10406.00.  Ar =    3786.0.  Edge =    13824.  Cut =    44727.  T =     0.01 sec
 ABC: P:  Del = 10406.00.  Ar =    3420.0.  Edge =    11986.  Cut =    45135.  T =     0.01 sec
 ABC: E:  Del = 10406.00.  Ar =    3414.0.  Edge =    11970.  Cut =    45135.  T =     0.00 sec
@@ -8247,7 +8247,7 @@ ABC: P:  Del = 10513.00.  Ar =    3446.0.  Edge =    11807.  Cut =    96328.  T 
 ABC: F:  Del = 10513.00.  Ar =    3263.0.  Edge =    11435.  Cut =    89256.  T =     0.01 sec
 ABC: A:  Del = 10513.00.  Ar =    3252.0.  Edge =    10902.  Cut =    88524.  T =     0.02 sec
 ABC: A:  Del = 10513.00.  Ar =    3251.0.  Edge =    10887.  Cut =    89081.  T =     0.02 sec
-ABC: Total time =     0.08 sec
+ABC: Total time =     0.07 sec
 ABC: + &save 
 ABC: + &load 
 ABC: + &st 
@@ -8262,7 +8262,7 @@ ABC: P:  Del = 10102.00.  Ar =    3339.0.  Edge =    11431.  Cut =    73544.  T 
 ABC: F:  Del = 10102.00.  Ar =    3197.0.  Edge =    11195.  Cut =    67008.  T =     0.01 sec
 ABC: A:  Del = 10102.00.  Ar =    3188.0.  Edge =    10762.  Cut =    65733.  T =     0.01 sec
 ABC: A:  Del = 10102.00.  Ar =    3187.0.  Edge =    10761.  Cut =    65796.  T =     0.01 sec
-ABC: Total time =     0.06 sec
+ABC: Total time =     0.05 sec
 ABC: + &save 
 ABC: + &load 
 ABC: + &write -n <abc-temp-dir>/output.aig 
@@ -8274,7 +8274,7 @@ ABC: levB =   12  mem = 0.21 MB
 ABC: LUT = 3173 : 2=271 8.5 %  3=1679 52.9 %  4=1223 38.5 %  Ave = 3.30
 ABC: + &write -n <abc-temp-dir>/output.aig 
 ABC: + time 
-ABC: elapse: 1.94 seconds, total: 1.94 seconds
+ABC: elapse: 1.89 seconds, total: 1.89 seconds
 
 27.41.19.6. Executing AIGER frontend.
 <suppressed ~4951 debug messages>
@@ -8317,8 +8317,8 @@ Using template $paramod$ff010651d70a62cf0b1bde99851b52f1d240f3a6\SB_RAM40_4K for
 Using template $paramod$f7eea60af916a62684800aa1e295389006798220\SB_RAM40_4K for cells of type $paramod$f7eea60af916a62684800aa1e295389006798220\SB_RAM40_4K.
 Using template $paramod$fb64d9954e07541928ca9b36b13b92278f46b27e\SB_RAM40_4K for cells of type $paramod$fb64d9954e07541928ca9b36b13b92278f46b27e\SB_RAM40_4K.
 Using template $paramod$9bdf46ea26b7268846d701571c181f13db440fe5\SB_RAM40_4K for cells of type $paramod$9bdf46ea26b7268846d701571c181f13db440fe5\SB_RAM40_4K.
-Using template $paramod$3d4d76a7c19f835f9d05b33ed7737303f02ca444\SB_RAM40_4K for cells of type $paramod$3d4d76a7c19f835f9d05b33ed7737303f02ca444\SB_RAM40_4K.
-Using template $paramod$865d17fd2f550be672b887cbde16afc334262fbb\SB_RAM40_4K for cells of type $paramod$865d17fd2f550be672b887cbde16afc334262fbb\SB_RAM40_4K.
+Using template $paramod$06c45b8669dd2d621fe7a94c8ac0d817dad4ff58\SB_RAM40_4K for cells of type $paramod$06c45b8669dd2d621fe7a94c8ac0d817dad4ff58\SB_RAM40_4K.
+Using template $paramod$ac3ea0f621721c765e92f2409a55ce21d0311609\SB_RAM40_4K for cells of type $paramod$ac3ea0f621721c765e92f2409a55ce21d0311609\SB_RAM40_4K.
 Using template $paramod$935cdf74fbbd2275daa33632b74de5af5882b288\SB_RAM40_4K for cells of type $paramod$935cdf74fbbd2275daa33632b74de5af5882b288\SB_RAM40_4K.
 Using template $paramod$b0ef1672242ca073e27257a125b4452e30f99550\SB_RAM40_4K for cells of type $paramod$b0ef1672242ca073e27257a125b4452e30f99550\SB_RAM40_4K.
 Using template $paramod$a626dfcaf228f61baa267b495235e0b32421b741\SB_RAM40_4K for cells of type $paramod$a626dfcaf228f61baa267b495235e0b32421b741\SB_RAM40_4K.
@@ -8829,6 +8829,6 @@ Found and reported 0 problems.
 
 27.50. Executing JSON backend.
 
-End of script. Logfile hash: 04d3e79ac8, CPU: user 16.93s system 0.43s, MEM: 368.48 MB peak
-Yosys 0.45+148 (git sha1 1bf908dea, aarch64-apple-darwin21.4-clang++ 14.0.0-1ubuntu1.1 -fPIC -O3)
-Time spent: 50% 11x techmap (9 sec), 10% 1x abc9_exe (1 sec), ...
+End of script. Logfile hash: 1b6badd58d, CPU: user 12.81s system 0.17s, MEM: 434.80 MB peak
+Yosys 0.46+124 (git sha1 d1695ad99, aarch64-apple-darwin21.4-clang++ 14.0.0-1ubuntu1.1 -fPIC -O3)
+Time spent: 51% 11x techmap (7 sec), 12% 1x abc9_exe (1 sec), ...
