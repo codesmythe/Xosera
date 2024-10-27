@@ -51,9 +51,9 @@ checklib: $(LIBRARY)
 	 echo "rosco_m68k/xosera_defs.inc modified" ; \
 	fi
 	@if \
-	 $(NM) --size $(LIBRARY) >new.txt
-	 $(NM) --size $(ROSCO_M68K_LIBRARIES)/libxosera.a >existing.txt
-	 diff -u new.txt existing.txt
+	 $(NM) --size "$(LIBRARY)" >new.txt ; \
+	 $(NM) --size "$(ROSCO_M68K_LIBRARIES)/libxosera.a" >existing.txt ; \
+	 diff -u new.txt existing.txt ; \
 	then \
 	 echo "$(LIBRARY) unchanged" ; \
 	else \
