@@ -658,7 +658,7 @@ The tile bitmap definitions start at the aligned address specified in `TILEBASE`
 | `GFX_1_BPP`     | 8x8   | 4 words        | 256    | 0x0400 boundary |
 | `GFX_1_BPP`     | 8x16  | 8 words        | 256    | 0x0800 boundary |
 | `GFX_4_BPP`     | 8x8   | 16 words       | 1024   | 0x4000 boundary |
-| `GFX_1_BPP_EXT` | 16x16 | 32 words       | 2048   | 0x8000 boundary |
+| `GFX_1_BPP_EXT` | 16x16 | 16 words       | 2048   | 0x8000 boundary |
 
 However, if using less tiles, you can relax alignment restrictions based on the maximum glyph index used.  For example if you are  using 512 or less 8x8 4-BPP tiles, then you only need to be aligned on a 0x2000 word boundary (16 words per tile, times 512 tiles).
 
@@ -673,7 +673,7 @@ In `GFX_4_BPP` tile mode for the tilemap display indices, there are 1024 glyphs,
 
 In `GFX_4_BPP` the tile font definition is the same as the corresponding bitmap mode.   Each `GFX_4_BPP` tile is 16 words, 2x8 for a total of 32KiB with all 1024 glyphs.
 
-The `GFX_1_BPP_EXT` format is a bit unique in that it is a tile mode (and useful for 16x16 glyph tiled text), but it was also designed so it would have enough tiles to completely cover the screen and the tile font defintion is organized so it can be treated as a "pseudo-bitmap".  Note that the glyph tile size should be 8x16 (8x8 will index incorrectly), but the font data is 16x16 as 1x16 linear words, with the even/odd half selected by the tilemap address low bit (so generally tilemap indices would be repeated for even/odd display). E.g., an 80 column tilemap, could show 40 columns of 16x16 text using doubled tile indices.  The `GFX_1_BPP_EXT` tilemap also has a per tile (8x16) background color index `0x0-0xF` (similar to `GFX_1_BPP`).  The foreground color is `0x01` unless `INVERT` bit set to use color `0x00`.
+The `GFX_1_BPP_EXT` format is a bit unique in that it is a tile mode (and useful for 16x16 glyph tiled text), but it was also designed so it would have enough tiles to completely cover the screen and the tile font defintion is organized so it can be treated as a "pseudo-bitmap".  Note that the glyph tile size should be 8x16 (8x8 will index incorrectly), but the font data is 16x16 monochrome pixels as 16 linear words, with the even/odd half selected by the tilemap address low bit (so generally tilemap indices would be repeated for even/odd display). E.g., an 80 column tilemap, could show 40 columns of 16x16 text using doubled tile indices.  The `GFX_1_BPP_EXT` tilemap also has a per tile (8x16) background color index `0x0-0xF` (similar to `GFX_1_BPP`).  The foreground color is `0x01` unless `INVERT` bit set to use color `0x00`.
 ![1-BPP extended diagram](./pics/wd_1-bpp-ext_tile_word.svg)
 
 In `GFX_1_BPP_EXT` tile mode tiles are just a linear array of words, each representing 16 monochrome pixels.  Each glyph is 16 words, 1x16 for a total of 64KiB with all 2048 glyphs.
