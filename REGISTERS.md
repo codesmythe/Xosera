@@ -1,139 +1,144 @@
 # Xosera - Register Quick Reference
 
 - [Xosera - Register Quick Reference](#xosera---register-quick-reference)
-  - [Xosera Main Register Quick Refernce (XM Registers)](#xosera-main-register-quick-refernce-xm-registers)
-    - [**0x0 `XM_SYS_CTRL`** (R/W+) - System Control](#0x0-xm_sys_ctrl-rw---system-control)
-    - [**0x1 `XM_INT_CTRL`** (R/W+) - Interrupt Control](#0x1-xm_int_ctrl-rw---interrupt-control)
-    - [**0x2 `XM_TIMER`** (R/W) - Timer Functions](#0x2-xm_timer-rw---timer-functions)
-    - [**0x3 `XM_RD_XADDR`** (R/W+) - XR Read Address](#0x3-xm_rd_xaddr-rw---xr-read-address)
-    - [**0x4 `XM_WR_XADDR`** (R/W) - XR Write Address](#0x4-xm_wr_xaddr-rw---xr-write-address)
-    - [**0x5 `XM_XDATA`** (R+/W+) - XR Read/Write Data](#0x5-xm_xdata-rw---xr-readwrite-data)
-    - [**0x6 `XM_RD_INCR`** (R/W) - Increment for VRAM Read Address](#0x6-xm_rd_incr-rw---increment-for-vram-read-address)
-    - [**0x7 `XM_RD_ADDR`** (R/W+) - VRAM Read Address](#0x7-xm_rd_addr-rw---vram-read-address)
-    - [**0x8 `XM_WR_INCR`** (R/W) - Increment for VRAM Write Address](#0x8-xm_wr_incr-rw---increment-for-vram-write-address)
-    - [**0x9 `XM_WR_ADDR`** (R/W) - VRAM Write Address](#0x9-xm_wr_addr-rw---vram-write-address)
-    - [**0xA `XM_DATA`** (R+/W+) - VRAM Read/Write Data](#0xa-xm_data-rw---vram-readwrite-data)
-    - [**0xB `XM_DATA_2`** (R+/W+) - VRAM Read/Write Data (2nd)](#0xb-xm_data_2-rw---vram-readwrite-data-2nd)
-    - [**0xC `PIXEL_X`** (-/W+) - X coordinate for pixel address/mask generation (also used to set `PIXEL_BASE`)](#0xc-pixel_x--w---x-coordinate-for-pixel-addressmask-generation-also-used-to-set-pixel_base)
-    - [**0xD `PIXEL_Y`** (-/W+) - Y coordinate for pixel address/mask generation (also used to set `PIXEL_WIDTH`)](#0xd-pixel_y--w---y-coordinate-for-pixel-addressmask-generation-also-used-to-set-pixel_width)
-    - [**0xE `XM_UART`** (R+/W+)](#0xe-xm_uart-rw)
-    - [**0xF `XM_FEATURE`** (R/-) - Xosera feature bits](#0xf-xm_feature-r----xosera-feature-bits)
+    - [Xosera Main Registers (XM Registers)](#xosera-main-registers-xm-registers)
+        - [**`XM_SYS_CTRL`** 0x0 (R/W+) - System Control](#xm_sys_ctrl-0x0-rw---system-control)
+        - [**`XM_INT_CTRL`** 0x1 (R/W+) - Interrupt Control](#xm_int_ctrl-0x1-rw---interrupt-control)
+        - [**`XM_TIMER`** 0x2 (R/W) - Timer Functions](#xm_timer-0x2-rw---timer-functions)
+        - [**`XM_RD_XADDR`** 0x3 (R/W+) - XR Read Address](#xm_rd_xaddr-0x3-rw---xr-read-address)
+        - [**`XM_WR_XADDR`** 0x4 (R/W) - XR Write Address](#xm_wr_xaddr-0x4-rw---xr-write-address)
+        - [**`XM_XDATA`** 0x5 (R+/W+) - XR Read/Write Data](#xm_xdata-0x5-rw---xr-readwrite-data)
+        - [**`XM_RD_INCR`** 0x6 (R/W) - Increment for VRAM Read Address](#xm_rd_incr-0x6-rw---increment-for-vram-read-address)
+        - [**`XM_RD_ADDR`** 0x7 (R/W+) - VRAM Read Address](#xm_rd_addr-0x7-rw---vram-read-address)
+        - [**`XM_WR_INCR`** 0x8 (R/W) - Increment for VRAM Write Address](#xm_wr_incr-0x8-rw---increment-for-vram-write-address)
+        - [**`XM_WR_ADDR`** 0x9 (R/W) - VRAM Write Address](#xm_wr_addr-0x9-rw---vram-write-address)
+        - [**`XM_DATA`** 0xA (R+/W+) - VRAM Read/Write Data](#xm_data-0xa-rw---vram-readwrite-data)
+        - [**`XM_DATA_2`** 0xB (R+/W+) - VRAM Read/Write Data (2nd)](#xm_data_2-0xb-rw---vram-readwrite-data-2nd)
+        - [**`XM_PIXEL_X`** 0xC (-/W+) - X coordinate for pixel addr/mask generation (also used to set `PIXEL_BASE`)](#xm_pixel_x-0xc--w---x-coordinate-for-pixel-addrmask-generation-also-used-to-set-pixel_base)
+        - [**`XM_PIXEL_Y`** 0xD (-/W+) - Y coordinate for pixel addr/mask generation (also used to set `PIXEL_WIDTH`)](#xm_pixel_y-0xd--w---y-coordinate-for-pixel-addrmask-generation-also-used-to-set-pixel_width)
+        - [**`XM_UART`** 0xE (R+/W+) - UART (DEPRECATED: not normally present)](#xm_uart-0xe-rw---uart-deprecated-not-normally-present)
+        - [**`XM_FEATURE`** 0xF (R/-) - Xosera feature bits](#xm_feature-0xf-r----xosera-feature-bits)
   - [Xosera Extended Register / Extended Memory Region Summary](#xosera-extended-register--extended-memory-region-summary)
-  - [Xosera Extended Registers Quick Reference (XR Registers)](#xosera-extended-registers-quick-reference-xr-registers)
-    - [**0x00 `XR_VID_CTRL`** (R/W) - Border Color / Playfield Color-Swap](#0x00-xr_vid_ctrl-rw---border-color--playfield-color-swap)
-    - [**0x01 `XR_COPP_CTRL`** (R/W) - Copper Enable](#0x01-xr_copp_ctrl-rw---copper-enable)
-    - [**0x02 `XR_AUD_CTRL`** (R/W) - Audio Control](#0x02-xr_aud_ctrl-rw---audio-control)
-    - [**0x03 `XR_SCANLINE`** (R/W+) - current video scan line/trigger Xosera host CPU video interrupt](#0x03-xr_scanline-rw---current-video-scan-linetrigger-xosera-host-cpu-video-interrupt)
-    - [**0x04 `XR_VID_LEFT`** (R/W) - video display window left edge](#0x04-xr_vid_left-rw---video-display-window-left-edge)
-    - [**0x05 `XR_VID_RIGHT`** (R/W) - video display window right \*\*edge](#0x05-xr_vid_right-rw---video-display-window-right-edge)
-    - [**0x06 `XR_POINTER_H`** (-/W+) - pointer sprite H position](#0x06-xr_pointer_h--w---pointer-sprite-h-position)
-    - [**0x07 `XR_POINTER_V`** (-/W+) - pointer sprite V position and colormap select](#0x07-xr_pointer_v--w---pointer-sprite-v-position-and-colormap-select)
-  - [Playfield A \& B Control XR Registers Quick Reference](#playfield-a--b-control-xr-registers-quick-reference)
-    - [**0x10 `XR_PA_GFX_CTRL` (R/W)** - playfield A (base) graphics control](#0x10-xr_pa_gfx_ctrl-rw---playfield-a-base-graphics-control)
-    - [**0x18 `XR_PB_GFX_CTRL` (R/W)** - playfield B (overlay) graphics control](#0x18-xr_pb_gfx_ctrl-rw---playfield-b-overlay-graphics-control)
-    - [**0x11 `XR_PA_TILE_CTRL` (R/W)** - playfield A (base) tile control](#0x11-xr_pa_tile_ctrl-rw---playfield-a-base-tile-control)
-    - [**0x19 `XR_PB_TILE_CTRL` (R/W)** - playfield B (overlay) tile control](#0x19-xr_pb_tile_ctrl-rw---playfield-b-overlay-tile-control)
-    - [**0x12 `XR_PA_DISP_ADDR` (R/W)** - playfield A (base) display VRAM start address](#0x12-xr_pa_disp_addr-rw---playfield-a-base-display-vram-start-address)
-    - [**0x1A `XR_PB_DISP_ADDR` (R/W)** - playfield B (overlay) display VRAM start address](#0x1a-xr_pb_disp_addr-rw---playfield-b-overlay-display-vram-start-address)
-    - [**0x13 `XR_PA_LINE_LEN` (R/W)** - playfield A (base) display line word length](#0x13-xr_pa_line_len-rw---playfield-a-base-display-line-word-length)
-    - [**0x1B `XR_PB_LINE_LEN` (R/W)** - playfield B (overlay) display line word length](#0x1b-xr_pb_line_len-rw---playfield-b-overlay-display-line-word-length)
-    - [**0x14 `XR_PA_HV_FSCALE` (R/W)** - playfield A (base) horizontal and vertical fractional scale](#0x14-xr_pa_hv_fscale-rw---playfield-a-base-horizontal-and-vertical-fractional-scale)
-    - [**0x1C `XR_PB_HV_FSCALE` (R/W)** - playfield B (overlay) horizontal and vertical fractional scale](#0x1c-xr_pb_hv_fscale-rw---playfield-b-overlay-horizontal-and-vertical-fractional-scale)
-    - [**0x15 `XR_PA_H_SCROLL` (R/W)** - playfield A (base) horizontal fine scroll](#0x15-xr_pa_h_scroll-rw---playfield-a-base-horizontal-fine-scroll)
-    - [**0x1D `XR_PB_H_SCROLL` (R/W)** - playfield B (overlay) horizontal fine scroll](#0x1d-xr_pb_h_scroll-rw---playfield-b-overlay-horizontal-fine-scroll)
-    - [**0x16 `XR_PA_V_SCROLL` (R/W)** - playfield A (base) vertical repeat/tile scroll](#0x16-xr_pa_v_scroll-rw---playfield-a-base-vertical-repeattile-scroll)
-    - [**0x1E `XR_PB_V_SCROLL` (R/W)** - playfield B (overlay) vertical repeat/tile scroll](#0x1e-xr_pb_v_scroll-rw---playfield-b-overlay-vertical-repeattile-scroll)
-    - [**0x17 `XR_PA_LINE_ADDR` (-/W)** - playfield A (base) display VRAM next line address](#0x17-xr_pa_line_addr--w---playfield-a-base-display-vram-next-line-address)
-    - [**0x1F `XR_PB_LINE_ADDR` (-/W)** - playfield B (overlay) display VRAM next line address](#0x1f-xr_pb_line_addr--w---playfield-b-overlay-display-vram-next-line-address)
-  - [Bitmap Display Formats](#bitmap-display-formats)
-  - [Tile Display Formats](#tile-display-formats)
-    - [**1-BPP tilemap** - 8-bit 256 tile/glyph index with 4-bit background/forground color attributes per word](#1-bpp-tilemap---8-bit-256-tileglyph-index-with-4-bit-backgroundforground-color-attributes-per-word)
-    - [**1-BPP tile definitions** two tile lines are stored in each word in the tile definition (8x8 or 8x16 tile size)](#1-bpp-tile-definitions-two-tile-lines-are-stored-in-each-word-in-the-tile-definition-8x8-or-8x16-tile-size)
-    - [**4 BPP tilemap**  10-bit 1024 tile/glyph index, 4-bit color offset and horizontal and vertical tile mirror](#4-bpp-tilemap--10-bit-1024-tileglyph-index-4-bit-color-offset-and-horizontal-and-vertical-tile-mirror)
-    - [**4-BPP tile definitions** 4 pixels per tile definition word (8x8 tile size)](#4-bpp-tile-definitions-4-pixels-per-tile-definition-word-8x8-tile-size)
-    - [**8 BPP tilemap**  10-bit 1024 tile/glyph index, 4-bit color offset and horizontal and vertical tile mirror](#8-bpp-tilemap--10-bit-1024-tileglyph-index-4-bit-color-offset-and-horizontal-and-vertical-tile-mirror)
-    - [**8-BPP tile definitions** 2 pixels per tile definition word (8x8 tile size)](#8-bpp-tile-definitions-2-pixels-per-tile-definition-word-8x8-tile-size)
-  - [Audio Register Quick Reference # TODO: Missing](#audio-register-quick-reference--todo-missing)
-  - [2D Blitter Engine Quick Reference](#2d-blitter-engine-quick-reference)
-    - [**0x20 `XR_BLIT_CTRL`** (-/W) - control bits (transparency control, S const)](#0x20-xr_blit_ctrl--w---control-bits-transparency-control-s-const)
-    - [**0x21 `XR_BLIT_ANDC`** (-/W) - source term ANDC value constant](#0x21-xr_blit_andc--w---source-term-andc-value-constant)
-    - [**0x22 `XR_BLIT_XOR`** (-/W) - source term XOR value constant](#0x22-xr_blit_xor--w---source-term-xor-value-constant)
-    - [**0x25 `XR_BLIT_MOD_D`** (-/W) - modulo added to `BLIT_DST_D` address at end of line](#0x25-xr_blit_mod_d--w---modulo-added-to-blit_dst_d-address-at-end-of-line)
-    - [**0x26 `XR_BLIT_DST_D`** (-/W) - destination D VRAM write address](#0x26-xr_blit_dst_d--w---destination-d-vram-write-address)
-    - [**0x27 `XR_BLIT_SHIFT`** (-/W) - first and last word nibble masks and nibble shift](#0x27-xr_blit_shift--w---first-and-last-word-nibble-masks-and-nibble-shift)
-    - [**0x28 `XR_BLIT_LINES`** (-/W) - 15-bit number of lines heigh - 1 (1 to 32768)](#0x28-xr_blit_lines--w---15-bit-number-of-lines-heigh---1-1-to-32768)
-    - [**0x29 `XR_BLIT_WORDS`** (-/W) - write queues operation, word width - 1 (1 to 65536, repeats `XR_BLIT_LINES` times)](#0x29-xr_blit_words--w---write-queues-operation-word-width---1-1-to-65536-repeats-xr_blit_lines-times)
-    - [Blitter Logic Operation](#blitter-logic-operation)
-  - [Video Synchronized Co-Processor "Copper" Quick Reference](#video-synchronized-co-processor-copper-quick-reference)
+    - [Video Config and Control XR Registers](#video-config-and-control-xr-registers)
+        - [**`XR_VID_CTRL`** 0x00 (R/W) - Border Color / Playfield Color-Swap](#xr_vid_ctrl-0x00-rw---border-color--playfield-color-swap)
+        - [**`XR_COPP_CTRL`** 0x01 (R/W) - Copper Enable](#xr_copp_ctrl-0x01-rw---copper-enable)
+        - [**`XR_AUD_CTRL`** 0x02 (R/W) - Audio Control](#xr_aud_ctrl-0x02-rw---audio-control)
+        - [**`XR_SCANLINE`** 0x03 (R/W+) - current video scan line/trigger Xosera host CPU video interrupt](#xr_scanline-0x03-rw---current-video-scan-linetrigger-xosera-host-cpu-video-interrupt)
+        - [**`XR_VID_LEFT`** 0x04 (R/W) - video display window left edge](#xr_vid_left-0x04-rw---video-display-window-left-edge)
+        - [**`XR_VID_RIGHT`** 0x05 (R/W) - video display window right edge](#xr_vid_right-0x05-rw---video-display-window-right-edge)
+        - [**`XR_POINTER_H`** 0x06 (-/W+) - pointer sprite H position](#xr_pointer_h-0x06--w---pointer-sprite-h-position)
+        - [**`XR_POINTER_V`** 0x07 (-/W+) - pointer sprite V position and colormap select](#xr_pointer_v-0x07--w---pointer-sprite-v-position-and-colormap-select)
+    - [Playfield A \& B Control XR Registers](#playfield-a--b-control-xr-registers)
+        - [**`XR_Px_GFX_CTRL`** 0x10/0x18 (R/W) - playfield A/B (base/overlay) graphics control](#xr_px_gfx_ctrl-0x100x18-rw---playfield-ab-baseoverlay-graphics-control)
+        - [**`XR_Px_TILE_CTRL`** 0x11/0x19 (R/W) - playfield A/B (base/overlay) tile control](#xr_px_tile_ctrl-0x110x19-rw---playfield-ab-baseoverlay-tile-control)
+        - [**`XR_Px_DISP_ADDR`** 0x12/0x1A (R/W) - playfield A/B (base/overlay) display VRAM start address](#xr_px_disp_addr-0x120x1a-rw---playfield-ab-baseoverlay-display-vram-start-address)
+        - [**`XR_Px_LINE_LEN`** 0x13/0x1B (R/W) - playfield A/B (base/overlay) display line word length](#xr_px_line_len-0x130x1b-rw---playfield-ab-baseoverlay-display-line-word-length)
+        - [**`XR_Px_HV_FSCALE`** 0x14/0x1C (R/W) - playfield A/B (base/overlay) horizontal and vertical fractional scale](#xr_px_hv_fscale-0x140x1c-rw---playfield-ab-baseoverlay-horizontal-and-vertical-fractional-scale)
+        - [**`XR_Px_H_SCROLL`** 0x15/0x1D (R/W) - playfield A/B (base/overlay) horizontal fine scroll](#xr_px_h_scroll-0x150x1d-rw---playfield-ab-baseoverlay-horizontal-fine-scroll)
+        - [**`XR_Px_V_SCROLL`** 0x16/0x1E (R/W) - playfield A/B (base/overlay) vertical repeat and tile fine scroll](#xr_px_v_scroll-0x160x1e-rw---playfield-ab-baseoverlay-vertical-repeat-and-tile-fine-scroll)
+        - [**`XR_Px_LINE_ADDR`** 0x17/0x1F (-/W) - playfield A/B (base/overlay) display VRAM next line address](#xr_px_line_addr-0x170x1f--w---playfield-ab-baseoverlay-display-vram-next-line-address)
+    - [Bitmap Display Formats Summary](#bitmap-display-formats-summary)
+      - [1-BPP Bitmap Display Format](#1-bpp-bitmap-display-format)
+      - [4-BPP Bitmap Display Format](#4-bpp-bitmap-display-format)
+      - [8-BPP Bitmap Display Format](#8-bpp-bitmap-display-format)
+    - [Tile Display Formats Summary](#tile-display-formats-summary)
+      - [1-BPP Tilemap Format (256 glyphs, 4-bit foreground/background color in upper byte)](#1-bpp-tilemap-format-256-glyphs-4-bit-foregroundbackground-color-in-upper-byte)
+      - [1-BPP Tiledef Format (256 glyphs, 8x8 tile 4 words or 8x16 tile 8 words, even line in high byte, odd in low)](#1-bpp-tiledef-format-256-glyphs-8x8-tile-4-words-or-8x16-tile-8-words-even-line-in-high-byte-odd-in-low)
+      - [4-BPP Tilemap Format (1024 glyphs, H/V tile mirror, 4-bit color index offset)](#4-bpp-tilemap-format-1024-glyphs-hv-tile-mirror-4-bit-color-index-offset)
+      - [4-BPP Tiledef Format (1024 glyphs, each 8x8 tile 16 words like 8x8 4-BPP bitmap)](#4-bpp-tiledef-format-1024-glyphs-each-8x8-tile-16-words-like-8x8-4-bpp-bitmap)
+      - [1-BPP-EXT Tilemap Format (2048 glyphs, forground invert, background 4-BPP color index)](#1-bpp-ext-tilemap-format-2048-glyphs-forground-invert-background-4-bpp-color-index)
+      - [1-BPP-EXT Tilemap Format (2048 glyphs, each 16 words like 16x16 bitmap)](#1-bpp-ext-tilemap-format-2048-glyphs-each-16-words-like-16x16-bitmap)
+    - [Color Memory ARGB Look-up and Playfield A B Blending](#color-memory-argb-look-up-and-playfield-a-b-blending)
+      - [**`COLOR_A`** and **`COLOR_B`** colormap format](#color_a-and-color_b-colormap-format)
+      - [Audio Generation XR Registers](#audio-generation-xr-registers)
+        - [**`XR_AUD0_VOL`** 0x20/0x24/0x28/0x2C (-/W) - audio channel 0-3 left/right mix volume](#xr_aud0_vol-0x200x240x280x2c--w---audio-channel-0-3-leftright-mix-volume)
+        - [**`XR_AUD0_PERIOD`** 0x21/0x25/0x29/0x2D (-/W) - audio channel 0-3 sample period](#xr_aud0_period-0x210x250x290x2d--w---audio-channel-0-3-sample-period)
+        - [**`XR_AUD0_LENGTH`** 0x22/0x26/0x2A/0x2E (-/W) - audio channel 0-3 sample word length and VRAM/TILE memory](#xr_aud0_length-0x220x260x2a0x2e--w---audio-channel-0-3-sample-word-length-and-vramtile-memory)
+        - [**`XR_AUD0_START`** 0x23/0x27/0x2B/0x2F (-/W) - audio channel 0-3 sample start address (in either VRAM/TILE)](#xr_aud0_start-0x230x270x2b0x2f--w---audio-channel-0-3-sample-start-address-in-either-vramtile)
+      - [2D Blitter Engine XR Registers](#2d-blitter-engine-xr-registers)
+        - [**`XR_BLIT_CTRL`** 0x40 (-/W) - control bits (transparency control, S const)](#xr_blit_ctrl-0x40--w---control-bits-transparency-control-s-const)
+        - [**`XR_BLIT_ANDC`** 0x41 (-/W) - source term ANDC value constant](#xr_blit_andc-0x41--w---source-term-andc-value-constant)
+        - [**`XR_BLIT_XOR`** 0x42 (-/W) - source term XOR value constant](#xr_blit_xor-0x42--w---source-term-xor-value-constant)
+        - [**`XR_BLIT_MOD_S`** 0x43 (-/W) - modulo added to `BLIT_SRC_S` address at end of line](#xr_blit_mod_s-0x43--w---modulo-added-to-blit_src_s-address-at-end-of-line)
+        - [**`XR_BLIT_SRC_S`** 0x44 (-/W) - source `S` term (read from VRAM address or constant value)](#xr_blit_src_s-0x44--w---source-s-term-read-from-vram-address-or-constant-value)
+        - [**`XR_BLIT_MOD_D`** 0x45 (-/W) - modulo added to `BLIT_DST_D` address at end of line](#xr_blit_mod_d-0x45--w---modulo-added-to-blit_dst_d-address-at-end-of-line)
+        - [**`XR_BLIT_DST_D`** 0x46 (-/W) - destination `D` VRAM write address](#xr_blit_dst_d-0x46--w---destination-d-vram-write-address)
+        - [**`XR_BLIT_SHIFT`** 0x47 (-/W) - first and last word nibble masks and nibble shift](#xr_blit_shift-0x47--w---first-and-last-word-nibble-masks-and-nibble-shift)
+        - [**`XR_BLIT_LINES`** 0x48 (-/W) - 15-bit number of lines high - 1 (1 to 32768)](#xr_blit_lines-0x48--w---15-bit-number-of-lines-high---1-1-to-32768)
+        - [**`XR_BLIT_WORDS`** 0x49 (-/W+) - write queues operation, word width - 1 (1 to 65536, repeats `XR_BLIT_LINES` times)](#xr_blit_words-0x49--w---write-queues-operation-word-width---1-1-to-65536-repeats-xr_blit_lines-times)
+  - [Video Synchronized Co-Processor "Copper" Info](#video-synchronized-co-processor-copper-info)
     - [Copper Instruction Set](#copper-instruction-set)
-    - [Copper Pseudo Instructions (when using CopAsm, or C macros)](#copper-pseudo-instructions-when-using-copasm-or-c-macros)
-    - [Screen Coordinate Details](#screen-coordinate-details)
+      - [Copper Pseudo Instructions (when using CopAsm, or C macros)](#copper-pseudo-instructions-when-using-copasm-or-c-macros)
+      - [Notes on Copper Memory Access](#notes-on-copper-memory-access)
+    - [Default TILE, COLOR and COPPER Memory Contents](#default-tile-color-and-copper-memory-contents)
 
-## Xosera Main Register Quick Refernce (XM Registers)
+### Xosera Main Registers (XM Registers)
 
-#### **0x0 `XM_SYS_CTRL`** (R/W+) - System Control
+##### **`XM_SYS_CTRL`** 0x0 (R/W+) - System Control
 
-<img src="./pics/wd_XM_SYS_CTRL.svg">
+![SYS_CTRL register diagram](./pics/wd_XM_SYS_CTRL.svg)
 
-#### **0x1 `XM_INT_CTRL`** (R/W+) - Interrupt Control
+##### **`XM_INT_CTRL`** 0x1 (R/W+) - Interrupt Control
 
-<img src="./pics/wd_XM_INT_CTRL.svg">  
+![XM_INT_CTRL register diagram](./pics/wd_XM_INT_CTRL.svg)
 
-#### **0x2 `XM_TIMER`** (R/W) - Timer Functions
+##### **`XM_TIMER`** 0x2 (R/W) - Timer Functions
 
-<img src="./pics/wd_XM_TIMER.svg">
+![XM_TIMER register diagram](./pics/wd_XM_TIMER.svg)
 
-#### **0x3 `XM_RD_XADDR`** (R/W+) - XR Read Address
+##### **`XM_RD_XADDR`** 0x3 (R/W+) - XR Read Address
 
-<img src="./pics/wd_XM_RD_XADDR.svg">
+![XM_RD_XADDR register diagram](./pics/wd_XM_RD_XADDR.svg)
 
-#### **0x4 `XM_WR_XADDR`** (R/W) - XR Write Address
+ **XR Register / Memory Read Address**
 
-<img src="./pics/wd_XM_WR_XADDR.svg">
+##### **`XM_WR_XADDR`** 0x4 (R/W) - XR Write Address
 
-#### **0x5 `XM_XDATA`** (R+/W+) - XR Read/Write Data
+![XM_WR_XADDR register diagram](./pics/wd_XM_WR_XADDR.svg)
 
-<img src="./pics/wd_XM_XDATA.svg">
+##### **`XM_XDATA`** 0x5 (R+/W+) - XR Read/Write Data
 
-#### **0x6 `XM_RD_INCR`** (R/W) - Increment for VRAM Read Address
+![XM_XDATA register diagram](./pics/wd_XM_XDATA.svg)
 
-<img src="./pics/wd_XM_RD_INCR.svg">
+##### **`XM_RD_INCR`** 0x6 (R/W) - Increment for VRAM Read Address
 
-#### **0x7 `XM_RD_ADDR`** (R/W+) - VRAM Read Address
+![XM_RD_INCR register diagram](./pics/wd_XM_RD_INCR.svg)
 
-<img src="./pics/wd_XM_RD_ADDR.svg">
+##### **`XM_RD_ADDR`** 0x7 (R/W+) - VRAM Read Address
 
-#### **0x8 `XM_WR_INCR`** (R/W) - Increment for VRAM Write Address
+![XM_RD_ADDR register diagram](./pics/wd_XM_RD_ADDR.svg)
 
-<img src="./pics/wd_XM_WR_INCR.svg">
+##### **`XM_WR_INCR`** 0x8 (R/W) - Increment for VRAM Write Address
 
-#### **0x9 `XM_WR_ADDR`** (R/W) - VRAM Write Address
+![XM_WR_INCR register diagram](./pics/wd_XM_WR_INCR.svg)
 
-<img src="./pics/wd_XM_WR_ADDR.svg">
+##### **`XM_WR_ADDR`** 0x9 (R/W) - VRAM Write Address
 
-#### **0xA `XM_DATA`** (R+/W+) - VRAM Read/Write Data
+![XM_WR_ADDR register diagram](./pics/wd_XM_WR_ADDR.svg)
 
-<img src="./pics/wd_XM_DATA.svg">
+##### **`XM_DATA`** 0xA (R+/W+) - VRAM Read/Write Data
 
-#### **0xB `XM_DATA_2`** (R+/W+) - VRAM Read/Write Data (2<sup>nd</sup>)
+![XM_DATA register diagram](./pics/wd_XM_DATA.svg)
 
-<img src="./pics/wd_XM_DATA.svg">
+##### **`XM_DATA_2`** 0xB (R+/W+) - VRAM Read/Write Data (2<sup>nd</sup>)
 
-#### **0xC `PIXEL_X`** (-/W+) - X coordinate for pixel address/mask generation (also used to set `PIXEL_BASE`)
+![XM_DATA_2 register diagram](./pics/wd_XM_DATA.svg)
 
-<img src="./pics/wd_XM_PIXEL_X.svg">
+##### **`XM_PIXEL_X`** 0xC (-/W+) - X coordinate for pixel addr/mask generation (also used to set `PIXEL_BASE`)
 
-#### **0xD `PIXEL_Y`** (-/W+) - Y coordinate for pixel address/mask generation (also used to set `PIXEL_WIDTH`)
+![XM_PIXEL_X register diagram](./pics/wd_XM_PIXEL_X.svg)
 
-<img src="./pics/wd_XM_PIXEL_Y.svg">
+##### **`XM_PIXEL_Y`** 0xD (-/W+) - Y coordinate for pixel addr/mask generation (also used to set `PIXEL_WIDTH`)
 
-#### **0xE `XM_UART`** (R+/W+)
+![XM_PIXEL_Y register diagram](./pics/wd_XM_PIXEL_Y.svg)
 
-<img src="./pics/wd_XM_UART.svg">
+##### **`XM_UART`** 0xE (R+/W+) - UART (DEPRECATED: not normally present)
 
-#### **0xF `XM_FEATURE`** (R/-) - Xosera feature bits
+![XM_UART register diagram](./pics/wd_XM_UART.svg)
 
-<img src="./pics/wd_XM_FEATURE.svg">
+##### **`XM_FEATURE`** 0xF (R/-) - Xosera feature bits
+
+![XM_FEATURE register diagram](./pics/wd_XM_FEATURE.svg)
 
 ___
 
@@ -141,227 +146,243 @@ ___
 
 | XR Region Name    | XR Region Range | R/W | Description                                   |
 |-------------------|-----------------|-----|-----------------------------------------------|
-| XR video config   | `0x0000-0x000F` | R/W | config XR registers                           |
-| XR playfield A    | `0x0010-0x0017` | R/W | playfield A XR registers                      |
-| XR playfield B    | `0x0018-0x001F` | R/W | playfield B XR registers                      |
-| XR audio control  | `0x0020-0x002F` | -/W | audio channel XR registers                    |
-| XR blit engine    | `0x0040-0x004B` | -/W | 2D-blit engine XR registers                   |
-| `XR_TILE_ADDR`    | `0x4000-0x53FF` | R/W | 5KW 16-bit tilemap/tile/audio storage memory  |
-| `XR_COLOR_A_ADDR` | `0x8000-0x80FF` | R/W | 256W 16-bit color A lookup memory (0xARGB)    |
-| `XR_COLOR_B_ADDR` | `0x8100-0x81FF` | R/W | 256W 16-bit color B lookup memory (0xARGB)    |
-| `XR_POINTER_ADDR` | `0x8200-0x82FF` | -/W | 256W 16-bit 32x32 4-BPP pointer sprite bitmap |
-| `XR_COPPER_ADDR`  | `0xC000-0xC5FF` | R/W | 1.5KW 16-bit copper memory                    |
-___
-
-## Xosera Extended Registers Quick Reference (XR Registers)
-
-#### **0x00 `XR_VID_CTRL`** (R/W) - Border Color / Playfield Color-Swap
-
-<img src="./pics/wd_XR_VID_CTRL.svg">
-
-#### **0x01 `XR_COPP_CTRL`** (R/W) - Copper Enable
-
-<img src="./pics/wd_XR_COPP_CTRL.svg">
-
-#### **0x02 `XR_AUD_CTRL`** (R/W) - Audio Control
-
-<img src="./pics/wd_XR_AUD_CTRL.svg">
-
-#### **0x03 `XR_SCANLINE`** (R/W+) - current video scan line/trigger Xosera host CPU video interrupt
-
-<img src="./pics/wd_XR_SCANLINE.svg">
-
-#### **0x04 `XR_VID_LEFT`** (R/W) - video display window left edge
-
-<img src="./pics/wd_XR_VID_LEFT.svg">
-
-#### **0x05 `XR_VID_RIGHT`** (R/W) - video display window right **edge
-
-<img src="./pics/wd_XR_VID_RIGHT.svg">
-
-#### **0x06 `XR_POINTER_H`** (-/W+) - pointer sprite H position
-
-<img src="./pics/wd_XR_POINTER_H.svg">
-
-#### **0x07 `XR_POINTER_V`** (-/W+) - pointer sprite V position and colormap select
-
-<img src="./pics/wd_XR_POINTER_V.svg">
+| XR video config   | 0x0000-0x0007   | R/W | config XR registers                           |
+| XR playfield A    | 0x0010-0x0017   | R/W | playfield A XR registers                      |
+| XR playfield B    | 0x0018-0x001F   | R/W | playfield B XR registers                      |
+| XR audio control  | 0x0020-0x002F   | -/W | audio channel XR registers                    |
+| XR blit engine    | 0x0040-0x0049   | -/W | 2D-blit engine XR registers                   |
+| `XR_TILE_ADDR`    | 0x4000-0x53FF   | R/W | 5KW 16-bit tilemap/tile storage memory        |
+| `XR_COLOR_A_ADDR` | 0x8000-0x80FF   | R/W | 256W 16-bit color A lookup memory (0xARGB)    |
+| `XR_COLOR_B_ADDR` | 0x8100-0x81FF   | R/W | 256W 16-bit color B lookup memory (0xARGB)    |
+| `XR_POINTER_ADDR` | 0x8200-0x82FF   | -/W | 256W 16-bit 32x32 4-BPP pointer sprite bitmap |
+| `XR_COPPER_ADDR`  | 0xC000-0xC5FF   | R/W | 1.5KW 16-bit copper memory                    |
 
 ___
 
-## Playfield A & B Control XR Registers Quick Reference
+### Video Config and Control XR Registers
 
-#### **0x10 `XR_PA_GFX_CTRL` (R/W)** - playfield A (base) graphics control  
+##### **`XR_VID_CTRL`** 0x00 (R/W) - Border Color / Playfield Color-Swap
 
-#### **0x18 `XR_PB_GFX_CTRL` (R/W)** - playfield B (overlay) graphics control
+![XR_VID_CTRL register diagram](./pics/wd_XR_VID_CTRL.svg)
 
-<img src="./pics/wd_XR_Px_GFX_CTRL.svg">
+##### **`XR_COPP_CTRL`** 0x01 (R/W) - Copper Enable
 
-#### **0x11 `XR_PA_TILE_CTRL` (R/W)** - playfield A (base) tile control  
+![XR_COPP_CTRL register diagram](./pics/wd_XR_COPP_CTRL.svg)
 
-#### **0x19 `XR_PB_TILE_CTRL` (R/W)** - playfield B (overlay) tile control
+##### **`XR_AUD_CTRL`** 0x02 (R/W) - Audio Control
 
-<img src="./pics/wd_XR_Px_TILE_CTRL.svg">
+![XR_AUD_CTRL register diagram](./pics/wd_XR_AUD_CTRL.svg)
 
-#### **0x12 `XR_PA_DISP_ADDR` (R/W)** - playfield A (base) display VRAM start address  
+##### **`XR_SCANLINE`** 0x03 (R/W+) - current video scan line/trigger Xosera host CPU video interrupt
 
-#### **0x1A `XR_PB_DISP_ADDR` (R/W)** - playfield B (overlay) display VRAM start address
+![XR_SCANLINE register diagram](./pics/wd_XR_SCANLINE.svg)
 
-<img src="./pics/wd_XR_Px_DISP_ADDR.svg">
+##### **`XR_VID_LEFT`** 0x04 (R/W) - video display window left edge
 
-#### **0x13 `XR_PA_LINE_LEN` (R/W)** - playfield A (base) display line word length  
+![XR_VID_LEFT register diagram](./pics/wd_XR_VID_LEFT.svg)
 
-#### **0x1B `XR_PB_LINE_LEN` (R/W)** - playfield B (overlay) display line word length
+##### **`XR_VID_RIGHT`** 0x05 (R/W) - video display window right edge  
 
-<img src="./pics/wd_XR_Px_LINE_LEN.svg">
+![XR_VID_RIGHT register diagram](./pics/wd_XR_VID_RIGHT.svg)
 
-#### **0x14 `XR_PA_HV_FSCALE` (R/W)** - playfield A (base) horizontal and vertical fractional scale  
+##### **`XR_POINTER_H`** 0x06 (-/W+) - pointer sprite H position
 
-#### **0x1C `XR_PB_HV_FSCALE` (R/W)** - playfield B (overlay) horizontal and vertical fractional scale
+![XR_POINTER_H register diagram](./pics/wd_XR_POINTER_H.svg)
 
-<img src="./pics/wd_XR_Px_HV_FSCALE.svg">
+##### **`XR_POINTER_V`** 0x07 (-/W+) - pointer sprite V position and colormap select
 
-#### **0x15 `XR_PA_H_SCROLL` (R/W)** - playfield A (base) horizontal fine scroll  
+![XR_POINTER_V register diagram](./pics/wd_XR_POINTER_V.svg)
 
-#### **0x1D `XR_PB_H_SCROLL` (R/W)** - playfield B (overlay) horizontal fine scroll
-
-<img src="./pics/wd_XR_Px_H_SCROLL.svg">
-
-#### **0x16 `XR_PA_V_SCROLL` (R/W)** - playfield A (base) vertical repeat/tile scroll  
-
-#### **0x1E `XR_PB_V_SCROLL` (R/W)** - playfield B (overlay) vertical repeat/tile scroll
-
-<img src="./pics/wd_XR_Px_V_SCROLL.svg">
-
-#### **0x17 `XR_PA_LINE_ADDR` (-/W)** - playfield A (base) display VRAM next line address  
-
-#### **0x1F `XR_PB_LINE_ADDR` (-/W)** - playfield B (overlay) display VRAM next line address
-
-<img src="./pics/wd_XR_Px_LINE_ADDR.svg">
-
-## Bitmap Display Formats
-
-**1 BPP bitmap mode** - 4-bit background/forground color attributes and 8 pixels per word
-<img src="./pics/wd_1-bpp_bitmap_word.svg">
-
-**4 BPP bitmap mode** - 4 pixels per word, each one of 16 colors
-<img src="./pics/wd_4-bpp_bitmap_word.svg">
-
-**8 BPP bitmap mode** - 2 pixels per word, each one of 256 colors
-<img src="./pics/wd_8-bpp_bitmap_word.svg">
-
-## Tile Display Formats
-
-#### **1-BPP tilemap** - 8-bit 256 tile/glyph index with 4-bit background/forground color attributes per word
-
-<img src="./pics/wd_1-bpp_tile_word.svg">
-
-#### **1-BPP tile definitions** two tile lines are stored in each word in the tile definition (8x8 or 8x16 tile size)
-
-<img src="./pics/wd_1-bpp_tile_def.svg">
-
-#### **4 BPP tilemap**  10-bit 1024 tile/glyph index, 4-bit color offset and horizontal and vertical tile mirror  
-
-<img src="./pics/wd_n-bpp_tile_word.svg">
-
-#### **4-BPP tile definitions** 4 pixels per tile definition word (8x8 tile size)
-
-<img src="./pics/wd_4-bpp_bitmap_word.svg">
-
-#### **8 BPP tilemap**  10-bit 1024 tile/glyph index, 4-bit color offset and horizontal and vertical tile mirror  
-
-<img src="./pics/wd_n-bpp_tile_word.svg">
-
-#### **8-BPP tile definitions** 2 pixels per tile definition word (8x8 tile size)
-
-<img src="./pics/wd_8-bpp_bitmap_word.svg">
-
-**Tile Defintion Alignment** in either TILE memory or VRAM
-| BPP   | Size | Words/Tile | Max Tiles | Word Alignment  | Max Word Size |
-|-------|------|------------|-----------|-----------------|---------------|
-| 1-BPP | 8x8  | 4 words    | 256       | 0x0400 boundary | 0x0400 words  |
-| 1-BPP | 8x16 | 8 words    | 256       | 0x0800 boundary | 0x0800 words  |
-| 4-BPP | 8x8  | 16 words   | 1024      | 0x4000 boundary | 0x4000 words  |
-| 8-BPP | 8x8  | 32 words   | 1024      | 0x8000 boundary | 0x8000 words  |
+**0x08-0x0F `XR_UNUSED_0x` (-/- ) - Unused Registers**
 
 ___
 
-## Audio Register Quick Reference # TODO: Missing
+### Playfield A & B Control XR Registers
+
+##### **`XR_Px_GFX_CTRL`** 0x10/0x18 (R/W) - playfield A/B (base/overlay) graphics control  
+
+![XR_Px_GFX_CTRL register diagram](./pics/wd_XR_Px_GFX_CTRL.svg)
+
+##### **`XR_Px_TILE_CTRL`** 0x11/0x19 (R/W) - playfield A/B (base/overlay) tile control  
+
+![XR_Px_TILE_CTRL register diagram](./pics/wd_XR_Px_TILE_CTRL.svg)
+
+##### **`XR_Px_DISP_ADDR`** 0x12/0x1A (R/W) - playfield A/B (base/overlay) display VRAM start address  
+
+![XR_Px_DISP_ADDR register diagram](./pics/wd_XR_Px_DISP_ADDR.svg)
+
+##### **`XR_Px_LINE_LEN`** 0x13/0x1B (R/W) - playfield A/B (base/overlay) display line word length  
+
+![XR_Px_LINE_LEN register diagram](./pics/wd_XR_Px_LINE_LEN.svg)
+
+##### **`XR_Px_HV_FSCALE`** 0x14/0x1C (R/W) - playfield A/B (base/overlay) horizontal and vertical fractional scale  
+
+![XR_Px_HV_FSCALE register diagram](./pics/wd_XR_Px_HV_FSCALE.svg)
+
+##### **`XR_Px_H_SCROLL`** 0x15/0x1D (R/W) - playfield A/B (base/overlay) horizontal fine scroll  
+
+![XR_Px_H_SCROLL register diagram](./pics/wd_XR_Px_H_SCROLL.svg)
+
+##### **`XR_Px_V_SCROLL`** 0x16/0x1E (R/W) - playfield A/B (base/overlay) vertical repeat and tile fine scroll  
+
+![XR_Px_V_SCROLL register diagram](./pics/wd_XR_Px_V_SCROLL.svg)
+
+##### **`XR_Px_LINE_ADDR`** 0x17/0x1F (-/W) - playfield A/B (base/overlay) display VRAM next line address  
+
+![XR_Px_LINE_ADDR register diagram](./pics/wd_XR_Px_LINE_ADDR.svg)
+
+### Bitmap Display Formats Summary
+
+Bitmap display data starts at the VRAM address`XR_Px_DISP_ADDR`, and has no alignment restrictions.
+
+#### 1-BPP Bitmap Display Format
+
+![1-BPP bitmap diagram](./pics/wd_1-bpp_bitmap_word.svg)
+
+#### 4-BPP Bitmap Display Format
+
+![4-BPP bitmap diagram](./pics/wd_4-bpp_bitmap_word.svg)
+
+#### 8-BPP Bitmap Display Format
+
+![8-BPP bitmap diagram](./pics/wd_8-bpp_bitmap_word.svg)
+
+### Tile Display Formats Summary
+
+Tile indices and attribute map display data starts at `XR_Px_DISP_ADDR` in either VRAM or TILEMEM (TILEMEM selected with `DISP_TILEMEM` bit in `XR_Px_TILE_CTRL`).  There are no alignment requirements for a tile (but even/odd address affects `GFX_1_BPP_EXT` tile half)
+
+The tile bitmap definitions start at the aligned address specified in `TILEBASE` bits set in `XR_Px_TILE_CTRL` in TILEMEM or VRAM (VRAM selected with `TILE_VRAM` in `XR_Pßx_TILE_CTRL`).  The tileset address should be aligned based on the power of two greater than the size of the maximum glyph index used. When using all possible glyphs in a tileset, alignment would be as follows:
+
+| BPP             | Size  | Words Per Tile | Glyphs | Word Alignment  |
+|-----------------|-------|----------------|--------|-----------------|
+| `GFX_1_BPP`     | 8x8   | 4 words        | 256    | 0x0400 boundary |
+| `GFX_1_BPP`     | 8x16  | 8 words        | 256    | 0x0800 boundary |
+| `GFX_4_BPP`     | 8x8   | 16 words       | 1024   | 0x4000 boundary |
+| `GFX_1_BPP_EXT` | 16x16 | 32 words       | 2048   | 0x8000 boundary |
+
+#### 1-BPP Tilemap Format (256 glyphs, 4-bit foreground/background color in upper byte)
+
+![1-BPP tilemap diagram](./pics/wd_1-bpp_tile_word.svg)
+
+#### 1-BPP Tiledef Format (256 glyphs, 8x8 tile 4 words or 8x16 tile 8 words, even line in high byte, odd in low)
+
+![1-BPP tile definition diagram](./pics/wd_1-bpp_tile_def.svg)
+
+#### 4-BPP Tilemap Format (1024 glyphs, H/V tile mirror, 4-bit color index offset)
+
+![4-BPP tilemap diagram](./pics/wd_n-bpp_tile_word.svg)
+
+#### 4-BPP Tiledef Format (1024 glyphs, each 8x8 tile 16 words like 8x8 4-BPP bitmap)
+
+![4-BPP bitmap diagram](./pics/wd_4-bpp_bitmap_word.svg)
+
+#### 1-BPP-EXT Tilemap Format (2048 glyphs, forground invert, background 4-BPP color index)
+
+>NOTE: 1-BPP-EXT tilemap still uses 8x16 sized tiles.  Which half of 16x16 tiledef is displayed is based on tilemap address low-bit (so normally each character index is repeated twice in both even and odd columns).
+
+![1-BPP extended diagram](./pics/wd_1-bpp-ext_tile_word.svg)
+
+#### 1-BPP-EXT Tilemap Format (2048 glyphs, each 16 words like 16x16 bitmap)
+
+![1-BPP-EXT tile definition diagram](./pics/wd_1-bpp-ext_tile_def.svg)
+
+### Color Memory ARGB Look-up and Playfield A B Blending
+
+| Name     | A Alpha Mode | A Alpha Value   | B Alpha Value | Blending Equation               | Blend effect                                |
+|----------|--------------|-----------------|---------------|---------------------------------|---------------------------------------------|
+| `BLEND`  | `00xx`       | inverse alpha B | alpha B       | $C_a (1-\alpha_b)+C_b \alpha_b$ | blend A with B using alpha B value          |
+| `DARKEN` | `01xx`       | inverse alpha B | 0% alpha      | $C_a (1-\alpha_b)$              | blend A with black using alpha B value      |
+| `ADD`    | `10xx`       | 100% alpha      | alpha B       | $C_a +C_b \alpha_b$             | additive blend A with B using alpha B value |
+| `OPAQUE` | `11xx`       | 100% alpha      | 0% alpha      | $C_a$                           | color A only (playfield A on top)           |
+
+#### **`COLOR_A`** and **`COLOR_B`** colormap format
+
+Each `COLOR_A` and `COLOR_B` colormap has 256 16-bit entries in the following format:
+![COLOR_A/B colormap register diagram](./pics/wd_colormap_word.svg)
 
 ___
 
-## 2D Blitter Engine Quick Reference
+#### Audio Generation XR Registers
 
-#### **0x20 `XR_BLIT_CTRL`** (-/W) - control bits (transparency control, S const)  
+##### **`XR_AUD0_VOL`** 0x20/0x24/0x28/0x2C (-/W) - audio channel 0-3 left/right mix volume  
 
-<img src="./pics/wd_XR_BLIT_CTRL.svg">
+![XR_AUDn_VOL register diagram](./pics/wd_XR_AUDn_VOL.svg)
 
-#### **0x21 `XR_BLIT_ANDC`** (-/W) - source term ANDC value constant
+##### **`XR_AUD0_PERIOD`** 0x21/0x25/0x29/0x2D (-/W) - audio channel 0-3 sample period
 
-<img src="./pics/wd_XR_BLIT_ANDC.svg">
+![XR_AUDn_PERIOD register diagram](./pics/wd_XR_AUDn_PERIOD.svg)
 
-#### **0x22 `XR_BLIT_XOR`** (-/W) - source term XOR value constant
+##### **`XR_AUD0_LENGTH`** 0x22/0x26/0x2A/0x2E (-/W) - audio channel 0-3 sample word length and VRAM/TILE memory
 
-<img src="./pics/wd_XR_BLIT_XOR.svg">
+![XR_AUDn_LENGTH register diagram](./pics/wd_XR_AUDn_LENGTH.svg)
 
-**0x23 `XR_BLIT_MOD_S`** (-/W) - modulo added to `BLIT_SRC_S` address at end of line
+##### **`XR_AUD0_START`** 0x23/0x27/0x2B/0x2F (-/W) - audio channel 0-3 sample start address (in either VRAM/TILE)
 
-<img src="./pics/wd_XR_BLIT_MOD_S.svg">
-
-**0x24 `XR_BLIT_SRC_S`** (-/W) - source `S` term (read from VRAM address or constant value)
-
-<img src="./pics/wd_XR_BLIT_SRC_S.svg">
-
-#### **0x25 `XR_BLIT_MOD_D`** (-/W) - modulo added to `BLIT_DST_D` address at end of line
-
-<img src="./pics/wd_XR_BLIT_MOD_D.svg">
-
-#### **0x26 `XR_BLIT_DST_D`** (-/W) - destination D VRAM write address
-
-<img src="./pics/wd_XR_BLIT_DST_D.svg">
-
-#### **0x27 `XR_BLIT_SHIFT`** (-/W) - first and last word nibble masks and nibble shift
-
-<img src="./pics/wd_XR_BLIT_SHIFT.svg">
-
-#### **0x28 `XR_BLIT_LINES`** (-/W) - 15-bit number of lines heigh - 1 (1 to 32768)
-
-<img src="./pics/wd_XR_BLIT_LINES.svg">
-
-#### **0x29 `XR_BLIT_WORDS`** (-/W) - write queues operation, word width - 1 (1 to 65536, repeats `XR_BLIT_LINES` times)
-
-<img src="./pics/wd_XR_BLIT_WORDS.svg">
-
-### Blitter Logic Operation
-
-&nbsp;&nbsp;&nbsp;`D = S & ~ANDC ^ XOR`  (destination word `D` &larr; `S` source word AND'd with NOT of `ANDC` and XOR'd with `XOR`)
-
-- `D` result word
-  - written to VRAM (starting address set by `XR_BLIT_DST_D` and incrementing/decrementing)
-- `S` primary source word, can be one of:
-  - word read from VRAM (starting VRAM address set by `XR_BLIT_SRC_A` and incrementing/decrementing)
-  - word constant (set by `XR_BLIT_SRC_S` when `S_CONST` set in `XR_BLIT_CTRL`)
-- `ANC` constant AND-COMPLEMENT word
-  - source word is AND'd with the NOT of this word
-- `XOR` constant XOR source word
-  - source word is XOR'd with the this word
-
+![XR_AUDn_START register diagram](./pics/wd_XR_AUDn_START.svg)
 ___
 
-## Video Synchronized Co-Processor "Copper" Quick Reference
+#### 2D Blitter Engine XR Registers
+
+##### **`XR_BLIT_CTRL`** 0x40 (-/W) - control bits (transparency control, S const)  
+
+![XR_BLIT_CTRL register diagram](./pics/wd_XR_BLIT_CTRL.svg)
+
+##### **`XR_BLIT_ANDC`** 0x41 (-/W) - source term ANDC value constant
+
+![XR_BLIT_ANDC register diagram](./pics/wd_XR_BLIT_ANDC.svg)
+
+##### **`XR_BLIT_XOR`** 0x42 (-/W) - source term XOR value constant
+
+![XR_BLIT_XOR register diagram](./pics/wd_XR_BLIT_XOR.svg)
+
+##### **`XR_BLIT_MOD_S`** 0x43 (-/W) - modulo added to `BLIT_SRC_S` address at end of line
+
+![XR_BLIT_MOD_S register diagram](./pics/wd_XR_BLIT_MOD_S.svg)
+
+##### **`XR_BLIT_SRC_S`** 0x44 (-/W) - source `S` term (read from VRAM address or constant value)
+
+![XR_BLIT_SRC_S register diagram](./pics/wd_XR_BLIT_SRC_S.svg)
+
+##### **`XR_BLIT_MOD_D`** 0x45 (-/W) - modulo added to `BLIT_DST_D` address at end of line
+
+![XR_BLIT_MOD_D register diagram](./pics/wd_XR_BLIT_MOD_D.svg)
+
+##### **`XR_BLIT_DST_D`** 0x46 (-/W) - destination `D` VRAM write address
+
+![XR_BLIT_DST_D register diagram](./pics/wd_XR_BLIT_DST_D.svg)
+
+##### **`XR_BLIT_SHIFT`** 0x47 (-/W) - first and last word nibble masks and nibble shift
+
+![XR_BLIT_SHIFT register diagram](./pics/wd_XR_BLIT_SHIFT.svg)
+
+##### **`XR_BLIT_LINES`** 0x48 (-/W) - 15-bit number of lines high - 1 (1 to 32768)
+
+![XR_BLIT_LINES register diagram](./pics/wd_XR_BLIT_LINES.svg)
+
+##### **`XR_BLIT_WORDS`** 0x49 (-/W+) - write queues operation, word width - 1 (1 to 65536, repeats `XR_BLIT_LINES` times)
+
+![XR_BLIT_WORDS register diagram](./pics/wd_XR_BLIT_WORDS.svg)
+___
+
+## Video Synchronized Co-Processor "Copper" Info
+
+| Video Mode | Aspect | Full res.  | H off-left | H visible   | V visible | V off-bottom |
+|------------|--------|------------|------------|-------------|-----------|--------------|
+| 640 x 480  | 4:3    | 800 x 525  | 0 to 159   | 160 to 799  | 0 to 479  | 480 to 524   |
+| 848 x 480  | 16:9   | 1088 x 517 | 0 to 239   | 240 to 1079 | 0 to 479  | 480 to 516   |
 
 ### Copper Instruction Set
 
-| Copper Assembly             | Opcode Bits                 | B | # | ~  | Description                                         |
-|-----------------------------|-----------------------------|---|---|----|-----------------------------------------------------|
-| `SETI`   *xadr14*,`#`*im16* | `rr00` `oooo` `oooo` `oooo` | B | 2 | 4  | sets [xadr14] &larr; to #val16                      |
-| + *im16* *value*            | `iiii` `iiii` `iiii` `iiii` | - | - | -  | *(im16, 2<sup>nd</sup> word of `SETI`)*             |
-| `SETM`  *xadr16*,*cadr12*   | `--01` `rccc` `cccc` `cccc` | B | 2 | 4  | sets [xadr16] &larr; to [cadr12]                    |
-| + *xadr16* *address*        | `rroo` `oooo` `oooo` `oooo` | - | - | -  | *(xadr16, 2<sup>nd</sup> word of `SETM`)*           |
-| `HPOS`   `#`*im11*          | `--10` `0iii` `iiii` `iiii` |   | 1 | 4+ | wait until video H pos. >= *im11* or EOL            |
-| `VPOS`   `#`*im11*          | `--10` `1bii` `iiii` `iiii` |   | 1 | 4+ | wait until video V pos. >= *im11[9:0]*,`b`=blitbusy |
-| `BRGE`   *cadd11*           | `--11` `0ccc` `cccc` `cccc` |   | 1 | 4  | if (`B`==0) `PC` &larr; *cadd11*                    |
-| `BRLT`   *cadd11*           | `--11` `1ccc` `cccc` `cccc` |   | 1 | 4  | if (`B`==1) `PC` &larr; *cadd11*                    |
+| Copper Assembly             | Opcode Bits           | B | # | ~  | Description                                         |
+|-----------------------------|-----------------------|---|---|----|-----------------------------------------------------|
+| `SETI`   *xadr14*,`#`*im16* | `rr00 oooo oooo oooo` | B | 2 | 4  | sets [xadr14] &larr; to #val16                      |
+| > *im16* *value*            | `iiii iiii iiii iiii` | - | - | -  | *(im16, 2<sup>nd</sup> word of `SETI`)*             |
+| `SETM`  *xadr16*,*cadr12*   | `--01 rccc cccc cccc` | B | 2 | 4  | sets [xadr16] &larr; to [cadr12]                    |
+| > *xadr16* *address*        | `rroo oooo oooo oooo` | - | - | -  | *(xadr16, 2<sup>nd</sup> word of `SETM`)*           |
+| `HPOS`   `#`*im11*          | `--10 0iii iiii iiii` |   | 1 | 4+ | wait until video H pos. >= *im11* or EOL            |
+| `VPOS`   `#`*im11*          | `--10 1bii iiii iiii` |   | 1 | 4+ | wait until video V pos. >= *im11[9:0]*,`b`=blitbusy |
+| `BRGE`   *cadd11*           | `--11 0ccc cccc cccc` |   | 1 | 4  | if (`B`==0) `PC` &larr; *cadd11*                    |
+| `BRLT`   *cadd11*           | `--11 1ccc cccc cccc` |   | 1 | 4  | if (`B`==1) `PC` &larr; *cadd11*                    |
 
 | Legend   | Description                                                                                              |
 |----------|----------------------------------------------------------------------------------------------------------|
@@ -370,12 +391,27 @@ ___
 | `~`      | number of copper cycles, always 4 unless a wait (each cycle is the time for one native pixel to output)  |
 | *xadr14* | 2-bit XR region + 12-bit offset (1<sup>st</sup> word of `SETI`, destination XR address)                  |
 | *im16*   | 16-bit immediate word (2<sup>nd</sup> word of `SETI`, the source value)                                  |
-| *cadr12* | 11-bit copper address or register with bit [11] (1<sup>st</sup> word of `SETM`, source copper adress)    |
-| *xadr16* | 16-bit XR addreass (2<sup>nd</sup> word of `SETM`, destination XR address)                               |
+| *cadr12* | 11-bit copper address or register with bit [11] (1<sup>st</sup> word of `SETM`, source copper address)   |
+| *xadr16* | 16-bit XR address (2<sup>nd</sup> word of `SETM`, destination XR address)                                |
 | *im11*   | 11-bit value for `HPOS`, `VPOS` wait. With `VPOS` bit `[10]` indicates also stop waiting if blitter idle |
 | *cadd11* | 11-bit copper program address for `BRGE`, `BRLT` branch opcodes                                          |
 
-### Copper Pseudo Instructions (when using CopAsm, or C macros)
+> :mag: **copper addresses** *cadr12*/*cadd11* bits`[15:14]` are ignored and copper memory is always used when reading or branching. When writing *xadr14*/*xadr16* bits `[15:14]` can be set to `11` (`XR_COPPER_ADDR` region) to write to copper memory. To help reduce confusion the CopAsm assembler sets `11`region bits in addresses for both reading and writing copper memory (even though these bits are ignored reading).
+
+> :mag: **tilemem high addresses**  Note *xadr14* offset`[11:0]`is 12-bits and that is not enough to write to the last`0x400` words of the`XR_TILE_ADDR` area (`0x4000-0x53FF`) with`SETI`.  However, this area can be written to using a 16-bit word read from copper memory and `SETM` (which uses a full 16-bit *xadr16* destination).
+
+**Copper addresses for memory mapped registers and operations:**
+
+| Pseudo reg       | Copper Addr | Operation                                 | Description                                 |
+|------------------|-------------|-------------------------------------------|---------------------------------------------|
+| `RA` (read)      | `0x800`     | read value in `RA`, `B` unaltered         | return current value in `RA` register       |
+| `RA` (write)     | `0x800`     | `RA` = *val16*, `B` =`0`                  | set `RA` to *val16*, clear `B` flag         |
+| `RA_SUB` (write) | `0x801`     | `RA` = `RA` - *val16*, `B`=`RA` < *val16* | set `RA` to `RA` - *val16*, update `B` flag |
+| `RA_CMP` (write) | `0x7FF`     | `B` = `RA` < *val16*                      | update B flag only (`RA` unaltered)         |
+
+#### Copper Pseudo Instructions (when using CopAsm, or C macros)
+
+In addition to above instructions, these synthetic instructions can help make code more clear (all map to a single copper instruction):
 
 | Instruction                | Alias  | Words | Description                                                              |
 |----------------------------|--------|-------|--------------------------------------------------------------------------|
@@ -393,26 +429,29 @@ ___
 | `CMPI` `#`*imm16*          | `SETI` | 2     | test if `RA` < *imm16*, `B` flag updated (`RA` not altered)              |
 | `CMPM` *cadr12*            | `SETM` | 2     | test it `RA` < contents of *cadr12*, `B` flag updated (`RA` not altered) |
 
-**Copper addresses for memory mapped registers and operations:**
-| Pseudo reg       | Copper Addr | Operation                                 | Description                                 |
-|------------------|-------------|-------------------------------------------|---------------------------------------------|
-| `RA` (read)      | `0x800`     | read value in `RA`, `B` unaltered         | return current value in `RA` register       |
-| `RA` (write)     | `0x800`     | `RA` = *val16*, `B` =`0`                  | set `RA` to *val16*, clear `B` flag         |
-| `RA_SUB` (write) | `0x801`     | `RA` = `RA` - *val16*, `B`=`RA` < *val16* | set `RA` to `RA` - *val16*, update `B` flag |
-| `RA_CMP` (write) | `0x7FF`     | `B` = `RA` < *val16*                      | update B flag only (`RA` unaltered)         |
+#### Notes on Copper Memory Access
 
-- `RA` read value in 16-bit accumulator, `B` flag unaltered
-  - E.g., `SETM XR_ADDR,RA` to store `RA` contents into `XR_ADDR`
-- `RA` write value from 16-bit accumulator,`B` flag cleared (since `RA` will be equal to value written)
-  - E.g., `SETI RA,#123` to load `RA` with `123`
-- `RA_SUB`write performs subtract operation, `RA` = `RA` minus the value written, `B` is set if `RA` is less than value written
-  - E.g. `SETI RA_SUB,#1` to subtract `1` from `RA`
-- `RA_CMP`write performs compare operation, setting `B` borrow flag if `RA` is less than the value written (`RA` not altered)
-  - E.g., `SETI RA_CMP,#10` to set `B` if contents of `RA` is less than `10`
+The copper can directly access the following Xosera resources:
 
-### Screen Coordinate Details
+- Write to any XR memory address or XR register, including:
+  - `0x0000-0x004F` registers for video and control, playfield A/B, audio and blitter
+  - `0x4000-0x53FF` tilemap, tile (font) or audio memory
+  - `0x8000-0x80FF` colormap A memory
+  - `0x8100-0x81FF` colormap B memory
+  - `0x8200-0x82FF` pointer sprite memory (32x32x4-BPP)
+  - `0xC000-0xC5FF` copper program/data memory
 
-| Video Mode | Aspect | Full res.  | H off-left | H visible   | V visible | V off-bottom |
-|------------|--------|------------|------------|-------------|-----------|--------------|
-| 640 x 480  | 4:3    | 800 x 525  | 0 to 159   | 160 to 799  | 0 to 479  | 480 to 524   |
-| 848 x 480  | 16:9   | 1088 x 517 | 0 to 239   | 240 to 1079 | 0 to 479  | 480 to 516   |
+- Read from XR copper program/data memory `0xC000-0xC5FF`:
+  - Reading and executing copper opcodes and operands fetched from copper `PC`
+  - Reading data words from copper memory using `SETM` opcode
+
+___
+
+### Default TILE, COLOR and COPPER Memory Contents
+
+| TILE address    | Description                                             |
+|-----------------|---------------------------------------------------------|
+| `0x4000-0x47FF` | 8x16 ST font (derived from Atari ST 8x16 font)          |
+| `0x4800-0x4BFF` | 8x8 ST font (derived from Atari ST 8x8 font)            |
+| `0x4C00-0x4FFF` | 8x8 PC font (derived from IBM CGA 8x8)                  |
+| `0x5000-0x53FF` | 8x8 hexadecimal debug font (showing TILE number in hex) |

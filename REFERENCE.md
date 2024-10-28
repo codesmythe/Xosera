@@ -27,13 +27,13 @@ This document is meant to provide the low-level reference register information t
       - [0xA **`XM_DATA`** (R+/W+) - VRAM Read/Write Data](#0xa-xm_data-rw---vram-readwrite-data)
       - [0xB **`XM_DATA_2`** (R+/W+) - VRAM Read/Write Data (2nd)](#0xb-xm_data_2-rw---vram-readwrite-data-2nd)
       - [0xC **`XM_PIXEL_X`** (-/W+) - X coordinate for pixel addr/mask generation (also used to set `PIXEL_BASE`)](#0xc-xm_pixel_x--w---x-coordinate-for-pixel-addrmask-generation-also-used-to-set-pixel_base)
-      - [0xD **`PIXEL_Y`** (-/W+) - Y coordinate for pixel addr/mask generation (also used to set `PIXEL_WIDTH`)](#0xd-pixel_y--w---y-coordinate-for-pixel-addrmask-generation-also-used-to-set-pixel_width)
-      - [0xE **`XM_UART`** (R+/W+)](#0xe-xm_uart-rw)
+      - [0xD **`XM_PIXEL_Y`** (-/W+) - Y coordinate for pixel addr/mask generation (also used to set `PIXEL_WIDTH`)](#0xd-xm_pixel_y--w---y-coordinate-for-pixel-addrmask-generation-also-used-to-set-pixel_width)
+      - [0xE **`XM_UART`** (R+/W+) - UART (DEPRECATED: not normally present)](#0xe-xm_uart-rw---uart-deprecated-not-normally-present)
       - [0xF **`XM_FEATURE`** (R/-) - Xosera feature bits](#0xf-xm_feature-r----xosera-feature-bits)
   - [Xosera Extended Register / Extended Memory Region Summary](#xosera-extended-register--extended-memory-region-summary)
     - [Xosera Extended Registers Details (XR Registers)](#xosera-extended-registers-details-xr-registers)
     - [Video Config and Copper XR Registers Summary](#video-config-and-copper-xr-registers-summary)
-    - [Video Config and Copper XR Registers Details](#video-config-and-copper-xr-registers-details)
+    - [Video Config and Control XR Registers Details](#video-config-and-control-xr-registers-details)
       - [0x00 **`XR_VID_CTRL`** (R/W) - Border Color / Playfield Color-Swap](#0x00-xr_vid_ctrl-rw---border-color--playfield-color-swap)
       - [0x01 **`XR_COPP_CTRL`** (R/W) - Copper Enable](#0x01-xr_copp_ctrl-rw---copper-enable)
       - [0x02 **`XR_AUD_CTRL`** (R/W) - Audio Control](#0x02-xr_aud_ctrl-rw---audio-control)
@@ -44,22 +44,22 @@ This document is meant to provide the low-level reference register information t
       - [0x07 **`XR_POINTER_V`** (-/W+) - pointer sprite V position and colormap select](#0x07-xr_pointer_v--w---pointer-sprite-v-position-and-colormap-select)
     - [Playfield A \& B Control XR Registers Summary](#playfield-a--b-control-xr-registers-summary)
     - [Playfield A \& B Control XR Registers Details](#playfield-a--b-control-xr-registers-details)
-      - [0x10 **`XR_PA_GFX_CTRL` (R/W)** - playfield A (base) graphics control](#0x10-xr_pa_gfx_ctrl-rw---playfield-a-base-graphics-control)
-      - [0x18 **`XR_PB_GFX_CTRL` (R/W)** - playfield B (overlay) graphics control](#0x18-xr_pb_gfx_ctrl-rw---playfield-b-overlay-graphics-control)
-      - [0x11 **`XR_PA_TILE_CTRL` (R/W)** - playfield A (base) tile control](#0x11-xr_pa_tile_ctrl-rw---playfield-a-base-tile-control)
-      - [0x19 **`XR_PB_TILE_CTRL` (R/W)** - playfield B (overlay) tile control](#0x19-xr_pb_tile_ctrl-rw---playfield-b-overlay-tile-control)
-      - [0x12 **`XR_PA_DISP_ADDR` (R/W)** - playfield A (base) display VRAM start address](#0x12-xr_pa_disp_addr-rw---playfield-a-base-display-vram-start-address)
-      - [0x1A **`XR_PB_DISP_ADDR` (R/W)** - playfield B (overlay) display VRAM start address](#0x1a-xr_pb_disp_addr-rw---playfield-b-overlay-display-vram-start-address)
-      - [0x13 **`XR_PA_LINE_LEN` (R/W)** - playfield A (base) display line word length](#0x13-xr_pa_line_len-rw---playfield-a-base-display-line-word-length)
-      - [0x1B **`XR_PB_LINE_LEN` (R/W)** - playfield B (overlay) display line word length](#0x1b-xr_pb_line_len-rw---playfield-b-overlay-display-line-word-length)
-      - [0x14 **`XR_PA_HV_FSCALE` (R/W)** - playfield A (base) horizontal and vertical fractional scale](#0x14-xr_pa_hv_fscale-rw---playfield-a-base-horizontal-and-vertical-fractional-scale)
-      - [0x1C **`XR_PB_HV_FSCALE` (R/W)** - playfield B (overlay) horizontal and vertical fractional scale](#0x1c-xr_pb_hv_fscale-rw---playfield-b-overlay-horizontal-and-vertical-fractional-scale)
-      - [0x15 **`XR_PA_H_SCROLL` (R/W)** - playfield A (base) horizontal fine scroll](#0x15-xr_pa_h_scroll-rw---playfield-a-base-horizontal-fine-scroll)
-      - [0x1D **`XR_PB_H_SCROLL` (R/W)** - playfield B (overlay) horizontal fine scroll](#0x1d-xr_pb_h_scroll-rw---playfield-b-overlay-horizontal-fine-scroll)
-      - [0x16 **`XR_PA_V_SCROLL` (R/W)** - playfield A (base) vertical repeat and tile fine scroll](#0x16-xr_pa_v_scroll-rw---playfield-a-base-vertical-repeat-and-tile-fine-scroll)
-      - [0x1E **`XR_PB_V_SCROLL` (R/W)** - playfield B (overlay) vertical repeat and tile fine scroll](#0x1e-xr_pb_v_scroll-rw---playfield-b-overlay-vertical-repeat-and-tile-fine-scroll)
-      - [0x17 **`XR_PA_LINE_ADDR` (WO)** - playfield A (base) display VRAM next line address](#0x17-xr_pa_line_addr-wo---playfield-a-base-display-vram-next-line-address)
-      - [0x1F **`XR_PB_LINE_ADDR` (WO)** - playfield B (overlay) display VRAM next line address](#0x1f-xr_pb_line_addr-wo---playfield-b-overlay-display-vram-next-line-address)
+      - [0x10 **`XR_PA_GFX_CTRL`** (R/W) - playfield A (base) graphics control](#0x10-xr_pa_gfx_ctrl-rw---playfield-a-base-graphics-control)
+      - [0x18 **`XR_PB_GFX_CTRL`** (R/W) - playfield B (overlay) graphics control](#0x18-xr_pb_gfx_ctrl-rw---playfield-b-overlay-graphics-control)
+      - [0x11 **`XR_PA_TILE_CTRL`** (R/W) - playfield A (base) tile control](#0x11-xr_pa_tile_ctrl-rw---playfield-a-base-tile-control)
+      - [0x19 **`XR_PB_TILE_CTRL`** (R/W) - playfield B (overlay) tile control](#0x19-xr_pb_tile_ctrl-rw---playfield-b-overlay-tile-control)
+      - [0x12 **`XR_PA_DISP_ADDR`** (R/W) - playfield A (base) display VRAM start address](#0x12-xr_pa_disp_addr-rw---playfield-a-base-display-vram-start-address)
+      - [0x1A **`XR_PB_DISP_ADDR`** (R/W) - playfield B (overlay) display VRAM start address](#0x1a-xr_pb_disp_addr-rw---playfield-b-overlay-display-vram-start-address)
+      - [0x13 **`XR_PA_LINE_LEN`** (R/W) - playfield A (base) display line word length](#0x13-xr_pa_line_len-rw---playfield-a-base-display-line-word-length)
+      - [0x1B **`XR_PB_LINE_LEN`** (R/W) - playfield B (overlay) display line word length](#0x1b-xr_pb_line_len-rw---playfield-b-overlay-display-line-word-length)
+      - [0x14 **`XR_PA_HV_FSCALE`** (R/W) - playfield A (base) horizontal and vertical fractional scale](#0x14-xr_pa_hv_fscale-rw---playfield-a-base-horizontal-and-vertical-fractional-scale)
+      - [0x1C **`XR_PB_HV_FSCALE`** (R/W) - playfield B (overlay) horizontal and vertical fractional scale](#0x1c-xr_pb_hv_fscale-rw---playfield-b-overlay-horizontal-and-vertical-fractional-scale)
+      - [0x15 **`XR_PA_H_SCROLL`** (R/W) - playfield A (base) horizontal fine scroll](#0x15-xr_pa_h_scroll-rw---playfield-a-base-horizontal-fine-scroll)
+      - [0x1D **`XR_PB_H_SCROLL`** (R/W) - playfield B (overlay) horizontal fine scroll](#0x1d-xr_pb_h_scroll-rw---playfield-b-overlay-horizontal-fine-scroll)
+      - [0x16 **`XR_PA_V_SCROLL`** (R/W) - playfield A (base) vertical repeat and tile fine scroll](#0x16-xr_pa_v_scroll-rw---playfield-a-base-vertical-repeat-and-tile-fine-scroll)
+      - [0x1E **`XR_PB_V_SCROLL`** (R/W) - playfield B (overlay) vertical repeat and tile fine scroll](#0x1e-xr_pb_v_scroll-rw---playfield-b-overlay-vertical-repeat-and-tile-fine-scroll)
+      - [0x17 **`XR_PA_LINE_ADDR`** (-/W) - playfield A (base) display VRAM next line address](#0x17-xr_pa_line_addr--w---playfield-a-base-display-vram-next-line-address)
+      - [0x1F **`XR_PB_LINE_ADDR`** (-/W) - playfield B (overlay) display VRAM next line address](#0x1f-xr_pb_line_addr--w---playfield-b-overlay-display-vram-next-line-address)
     - [Bitmap Display Formats](#bitmap-display-formats)
     - [Tile Display Formats](#tile-display-formats)
     - [Final Color Index Selection](#final-color-index-selection)
@@ -142,7 +142,7 @@ ___
 | 0xF   | **`XM_FEATURE`**  | R /-   | Feature bits                                                                          |
 
 (`R+` or `W+` indicates that reading or writing this register can have additional "side effects", respectively)
-*[1]* USB UART is an optional debug convenience feature, since FTDI chip was present on UPduino.  It may not always be present.
+*[1]* USB UART is an optional debug feature, using FTDI chip present on UPduino.  Not normally present/enabled.
 ___
 
 ### Xosera Main Register Details (XM Registers)
@@ -160,7 +160,7 @@ ___
 | `BLIT_BUSY`   | `[13]`  | R/-  | blit busy (blit operations not fully completed, but queue may be empty)         |
 | `HBLANK`      | `[11]`  | R/-  | horizontal blank flag (i.e., current pixel is not visible, off left/right edge) |
 | `VBLANK`      | `[10]`  | R/-  | vertical blank flag (i.e., current line is not visible, off top/bottom edge)    |
-| `PIX_NO_MASK` | `[9]`   | R/W+ | `XM_PIXEL_X/Y` won't set `WR_MASK` (low two bits of `PIXEL_X` ignored)          |
+| `PIX_NO_MASK` | `[9]`   | R/W+ | `XM_PIXEL_X/Y` won't set `WR_MASK` (low two bits of `XM_PIXEL_X` ignored)          |
 | `PIX_8B_MASK` | `[8]`   | R/W+ | `XM_PIXEL_X/Y` 8-bit pixel mask for WR_MASK (on even 4-BPP coordinates)         |
 | `WR_MASK`     | `[3:0]` | R/W  | `XM_DATA`/`XM_DATA_2` VRAM nibble write mask (see below)                        |
 
@@ -309,28 +309,28 @@ When `XM_DATA_2` is written, the value is written to VRAM at `XM_WR_ADDR` and `X
 Used to allow using pixel coordinates to calculate VRAM write address and also isolate a specific 4-bit or 8-bit pixel bits to update. Upon write, sets:  
  `XM_WR_ADDR = PIXEL_BASE + (XM_PIXEL_Y * PIXEL_WIDTH) + (XM_PIXEL_X >> 2)`  
  Also sets `XM_SYS_CTRL[3:0]`/`WR_MASK` nibble write mask (unless `XM_SYS_CTRL[9]`/`PIX_NO_MASK` set) to binary:  
- `1p00 >> PIXEL_X[1:0]` (`p` is `0` for 4-BPP or `1` for 8-BPP on even X coordinates when `XM_SYS_CTRL[9]`/`PIX_8B_MASK` set).  
+ `1p00 >> XM_PIXEL_X[1:0]` (`p` is `0` for 4-BPP or `1` for 8-BPP on even X coordinates when `XM_SYS_CTRL[9]`/`PIX_8B_MASK` set).  
 
  The value in this register is also used to set the `PIXEL_BASE` internal register when `XM_SYS_CTRL[15:8]` is written to (see `SYS_CTRL`).  Generally this needs to be done before using the pixel address generation feature.
 
 > :mag: **`XM_WR_ADDR` and `XM_SYS_CTRL[3:0]`/`WR_MASK`** These registers will generally be altered immediately whenever this register is altered, keep this in mind (especially it is easy to unintentionally alter the write mask, causing issues later with garbed writes to VRAM if it is not restored to `0xF`).  Also `XM_SYS_CTRL[8]`/`PIX_NO_MASK` set will prevent the mask from being altered.
 
-##### 0xD **`PIXEL_Y`** (-/W+) - Y coordinate for pixel addr/mask generation (also used to set `PIXEL_WIDTH`)
+##### 0xD **`XM_PIXEL_Y`** (-/W+) - Y coordinate for pixel addr/mask generation (also used to set `PIXEL_WIDTH`)
 
 ![XM_PIXEL_Y register diagram](./pics/wd_XM_PIXEL_Y.svg)
 
 **signed Y coordinate for pixel addressing, write sets `WR_ADDR` and `SYS_CTRL` `WR_MASK` nibble mask to isolate pixel**
 
 Used to allow using pixel coordinates to calculate VRAM write address and also isolate a specific 4-bit or 8-bit pixel to update. Upon write, sets:  
- `WR_ADDR = PIXEL_BASE + (PIXEL_Y * PIXEL_WIDTH) + (PIXEL_X >> 2)`  
+ `WR_ADDR = PIXEL_BASE + (XM_PIXEL_Y * PIXEL_WIDTH) + (XM_PIXEL_X >> 2)`  
  Also sets `XM_SYS_CTRL[3:0]`/`WR_MASK` nibble write mask (unless `XM_SYS_CTRL[9]`/`PIX_NO_MASK` set) to binary:  
- `1p00 >> PIXEL_X[1:0]` (`p` is `0` for 4-BPP or `1` for 8-BPP on even X coordinates when `XM_SYS_CTRL[9]`/`PIX_8B_MASK` set).
+ `1p00 >> XM_PIXEL_X[1:0]` (`p` is `0` for 4-BPP or `1` for 8-BPP on even X coordinates when `XM_SYS_CTRL[9]`/`PIX_8B_MASK` set).
 
 The value in this register is also used to set `PIXEL_WIDTH` when `SYS_CTRL[15:8]` is written to (see `XM_SYS_CTRL`).  Generally this needs to be done before using the pixel address generation feature.
 
 > :mag: **`XM_WR_ADDR` and `XM_SYS_CTRL[3:0]`/`WR_MASK`** These registers will generally be altered immediately whenever this register is altered, keep this in mind (especially it is easy to unintentionally alter the write mask, causing issues later with garbed writes to VRAM if it is not restored to `0xF`).  Also `XM_SYS_CTRL[8]`/`PIX_NO_MASK` set will prevent the mask from being altered.
 
-##### 0xE **`XM_UART`** (R+/W+)
+##### 0xE **`XM_UART`** (R+/W+) - UART (DEPRECATED: not normally present)
 
 ![XM_UART register diagram](./pics/wd_XM_UART.svg)
 
@@ -402,7 +402,7 @@ To write to these XR registers, write an XR address to `XM_WR_XADDR` then write 
 (`R+` or `W+` indicates that reading or writing this register has additional "side effects", respectively)
 ___
 
-### Video Config and Copper XR Registers Details
+### Video Config and Control XR Registers Details
 
 ##### 0x00 **`XR_VID_CTRL`** (R/W) - Border Color / Playfield Color-Swap
 
@@ -511,9 +511,9 @@ ___
 
 ### Playfield A & B Control XR Registers Details
 
-##### 0x10 **`XR_PA_GFX_CTRL` (R/W)** - playfield A (base) graphics control  
+##### 0x10 **`XR_PA_GFX_CTRL`** (R/W) - playfield A (base) graphics control  
 
-##### 0x18 **`XR_PB_GFX_CTRL` (R/W)** - playfield B (overlay) graphics control
+##### 0x18 **`XR_PB_GFX_CTRL`** (R/W) - playfield B (overlay) graphics control
 
 ![XR_Px_GFX_CTRL register diagram](./pics/wd_XR_Px_GFX_CTRL.svg)
 
@@ -537,9 +537,9 @@ ___
 > | `GFX_8_BPP`     | `2`   | :x:                | :white_check_mark: | 8 bits per pixel (256 color)              |
 > | `GFX_1_BPP_EXT` | `3`   | :white_check_mark: | :x: (pseudo)       | 1 bit per pixel monochrome extended       |
 
-##### 0x11 **`XR_PA_TILE_CTRL` (R/W)** - playfield A (base) tile control  
+##### 0x11 **`XR_PA_TILE_CTRL`** (R/W) - playfield A (base) tile control  
 
-##### 0x19 **`XR_PB_TILE_CTRL` (R/W)** - playfield B (overlay) tile control
+##### 0x19 **`XR_PB_TILE_CTRL`** (R/W) - playfield B (overlay) tile control
 
 ![XR_Px_TILE_CTRL register diagram](./pics/wd_XR_Px_TILE_CTRL.svg)
 
@@ -552,27 +552,27 @@ ___
 | `DISP_TILEMEM` | `[9]`     | R/W | Tile display indices in VRAM or TILEMEM (0=VRAM, 1=TILEMEM)                         |
 | `TILEBASE`     | `[15:10]` | R/W | Base address for start of tiles in TILEMEM or VRAM (aligned per tile size/BPP)      |
 
-##### 0x12 **`XR_PA_DISP_ADDR` (R/W)** - playfield A (base) display VRAM start address  
+##### 0x12 **`XR_PA_DISP_ADDR`** (R/W) - playfield A (base) display VRAM start address  
 
-##### 0x1A **`XR_PB_DISP_ADDR` (R/W)** - playfield B (overlay) display VRAM start address
+##### 0x1A **`XR_PB_DISP_ADDR`** (R/W) - playfield B (overlay) display VRAM start address
 
 ![XR_Px_DISP_ADDR register diagram](./pics/wd_XR_Px_DISP_ADDR.svg)
 
 **playfield A/B display start address**  
 Address in VRAM for start of playfield display (either bitmap or tile indices/attributes map).
 
-##### 0x13 **`XR_PA_LINE_LEN` (R/W)** - playfield A (base) display line word length  
+##### 0x13 **`XR_PA_LINE_LEN`** (R/W) - playfield A (base) display line word length  
 
-##### 0x1B **`XR_PB_LINE_LEN` (R/W)** - playfield B (overlay) display line word length
+##### 0x1B **`XR_PB_LINE_LEN`** (R/W) - playfield B (overlay) display line word length
 
 ![XR_Px_LINE_LEN register diagram](./pics/wd_XR_Px_LINE_LEN.svg)
 
 **playfield A/B display line word length**  
 Word length added to line start address for each new line.  The first line will use `XR_Px_DISP_ADDR` and this value will be added at the end of each subsequent line.  It is not the length of of the displayed line (however it is typically at least as long or data will be shown multiple times).  Twos complement, so negative values are okay (for reverse scan line order in memory).
 
-##### 0x14 **`XR_PA_HV_FSCALE` (R/W)** - playfield A (base) horizontal and vertical fractional scale  
+##### 0x14 **`XR_PA_HV_FSCALE`** (R/W) - playfield A (base) horizontal and vertical fractional scale  
 
-##### 0x1C **`XR_PB_HV_FSCALE` (R/W)** - playfield B (overlay) horizontal and vertical fractional scale
+##### 0x1C **`XR_PB_HV_FSCALE`** (R/W) - playfield B (overlay) horizontal and vertical fractional scale
 
 ![XR_Px_HV_FSCALE register diagram](./pics/wd_XR_Px_HV_FSCALE.svg)
 
@@ -589,9 +589,9 @@ Will repeat the color of a pixel or scan-line every N+1<sup>th</sup> column or l
 | 6 (1 of 7)   | 548.57 pixels     | 726.85 pixels     | 411.42 lines     |
 | 7 (1 of 8)   | 560 pixels        | 742 pixels        | 420 lines        |
 
-##### 0x15 **`XR_PA_H_SCROLL` (R/W)** - playfield A (base) horizontal fine scroll  
+##### 0x15 **`XR_PA_H_SCROLL`** (R/W) - playfield A (base) horizontal fine scroll  
 
-##### 0x1D **`XR_PB_H_SCROLL` (R/W)** - playfield B (overlay) horizontal fine scroll
+##### 0x1D **`XR_PB_H_SCROLL`** (R/W) - playfield B (overlay) horizontal fine scroll
 
 ![XR_Px_H_SCROLL register diagram](./pics/wd_XR_Px_H_SCROLL.svg)
 
@@ -603,9 +603,9 @@ Will repeat the color of a pixel or scan-line every N+1<sup>th</sup> column or l
 
 Horizontal fine scroll `H_SCROLL` will clip (or skip) 0-31 native pixels from the left border edge. This horizontal scroll offset is applied to all tile or bitmap modes.
 
-##### 0x16 **`XR_PA_V_SCROLL` (R/W)** - playfield A (base) vertical repeat and tile fine scroll  
+##### 0x16 **`XR_PA_V_SCROLL`** (R/W) - playfield A (base) vertical repeat and tile fine scroll  
 
-##### 0x1E **`XR_PB_V_SCROLL` (R/W)** - playfield B (overlay) vertical repeat and tile fine scroll  
+##### 0x1E **`XR_PB_V_SCROLL`** (R/W) - playfield B (overlay) vertical repeat and tile fine scroll  
 
 ![XR_Px_V_SCROLL register diagram](./pics/wd_XR_Px_V_SCROLL.svg)
 
@@ -620,9 +620,9 @@ Vertical repeat scroll selects the topmost scanline displayed from a line repeat
 
 Vertical tile scroll selects the topmost tile line displayed (normally 0).  This tile scroll is useful in tiled modes to start with a partial tile (in bitmap modes, change `Px_DISP_ADDR` to scroll vertically).  Vertical tile scroll `V_TILE_SCROLL` should not be set greater than tile height `TILE_H` (in `Px_TILE_CTRL`) to avoid display corruption.
 
-##### 0x17 **`XR_PA_LINE_ADDR` (WO)** - playfield A (base) display VRAM next line address  
+##### 0x17 **`XR_PA_LINE_ADDR`** (-/W) - playfield A (base) display VRAM next line address  
 
-##### 0x1F **`XR_PB_LINE_ADDR` (WO)** - playfield B (overlay) display VRAM next line address
+##### 0x1F **`XR_PB_LINE_ADDR`** (-/W) - playfield B (overlay) display VRAM next line address
 
 ![XR_Px_LINE_ADDR register diagram](./pics/wd_XR_Px_LINE_ADDR.svg)
 
@@ -677,6 +677,7 @@ The `GFX_1_BPP_EXT` format is a bit unique in that it is a tile mode (and useful
 ![1-BPP extended diagram](./pics/wd_1-bpp-ext_tile_word.svg)
 
 In `GFX_1_BPP_EXT` tile mode tiles are just a linear array of words, each representing 16 monochrome pixels.  Each glyph is 16 words, 1x16 for a total of 64KiB with all 2048 glyphs.
+![1-BPP-EXT tile definition diagram](./pics/wd_1-bpp-ext_tile_def.svg)
 
 > :mag: *NOTE:* To use `GFX_1_BPP_EXT` as a "pseudo-bitmap", one method is to fill the screen tilemap with incrementing tile indices in doubled *columns* (doubled to show even/odd half of each 16-bit glyph with 8x16 tile size).  Then once the tilemap is setup, you can treat the tile font definition as a bitmap.  However, this bitmap will have vertical 16-pixel wide columns instead of scan-lines (as if it were rotated 90 degrees from normal).  
 >
