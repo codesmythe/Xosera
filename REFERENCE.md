@@ -160,7 +160,7 @@ ___
 | `BLIT_BUSY`   | `[13]`  | R/-  | blit busy (blit operations not fully completed, but queue may be empty)         |
 | `HBLANK`      | `[11]`  | R/-  | horizontal blank flag (i.e., current pixel is not visible, off left/right edge) |
 | `VBLANK`      | `[10]`  | R/-  | vertical blank flag (i.e., current line is not visible, off top/bottom edge)    |
-| `PIX_NO_MASK` | `[9]`   | R/W+ | `XM_PIXEL_X/Y` won't set `WR_MASK` (low two bits of `XM_PIXEL_X` ignored)          |
+| `PIX_NO_MASK` | `[9]`   | R/W+ | `XM_PIXEL_X/Y` won't set `WR_MASK` (low two bits of `XM_PIXEL_X` ignored)       |
 | `PIX_8B_MASK` | `[8]`   | R/W+ | `XM_PIXEL_X/Y` 8-bit pixel mask for WR_MASK (on even 4-BPP coordinates)         |
 | `WR_MASK`     | `[3:0]` | R/W  | `XM_DATA`/`XM_DATA_2` VRAM nibble write mask (see below)                        |
 
@@ -905,7 +905,7 @@ The biltter will also generate an Xosera interrupt with interrupt source #1 each
 | 0x46  | `XR_BLIT_DST_D` | -/W  | `D` destination write VRAM address                                   |
 | 0x47  | `XR_BLIT_SHIFT` | -/W  | first and last word nibble masks and nibble shift amount (0-3)       |
 | 0x48  | `XR_BLIT_LINES` | -/W  | number of lines minus 1, (repeats blit word count after modulo calc) |
-| 0x49  | `XR_BLIT_WORDS` | -/W+ | word count minus 1 per line (write queues blit operation)            |
+| 0x49  | `XR_BLIT_WORDS` | -/W+ | word count minus 1 per line (write queues the blit operation)        |
 | 0x4A  | `XR_BLIT_2A`    | -/-  | RESERVED                                                             |
 | 0x4B  | `XR_BLIT_2B`    | -/-  | RESERVED                                                             |
 | 0x4C  | `XR_BLIT_2C`    | -/-  | RESERVED                                                             |
@@ -921,18 +921,18 @@ The biltter will also generate an Xosera interrupt with interrupt source #1 each
 
 ![XR_BLIT_CTRL register diagram](./pics/wd_XR_BLIT_CTRL.svg)
 
-**blitter operation control**  
-The basic logic operation applied to all operations: `D = A & B ^ C`
+**Blitter Operation**  
+The basic logic operation applied to all operations: ``D = S & (~ANDC) ^ XOR``
 The operation has four options that can be independently specified in `XR_BLIT_CTRL`:
 
 - `S_CONST` specifies `S` term is a constant (`XR_BLIT_SRC_S` used as constant instead of VRAM address to read)
-  - NOTE: When `S` is a constant the value of `XR_BLIT_MOD_S` will still be added to it at the end of each line.
+  - NOTE: When `S` is a constant, the value of `XR_BLIT_MOD_S` will *still* be added to `XR_BLIT_SRC_S` at the end of each line (so typically `XR_BLIT_MOD_S` is set to zero when `S` is a constant).
 
-Additionally, a transparency testing can be to the source data: `4-bit mask M = (S != T)` (testing either per nibble or byte, for 4-bit or 8-bit modes).  When a nibble/byte is masked, the existing pixel in VRAM will not be modified.
+Additionally, a transparency testing can be done, comparing source to transparency value (testing either per nibble or byte, for 4-bit or 8-bit modes).  When a nibble/byte is transparent, the existing destination pixel in VRAM will not be modified.
 
-- `TRANSP` will enable transparency testing when set (when zero, no pixel values will be masked, but start and end of line masking will still apply)
-- `TRANSP8` can be set so 8-bit transparency test (vs 4-bit).  Pixels are tested for transparency and masked only when the both nibbles in a byte match the transparency value
-- `T` value is set in with the upper 8 bits of `XR_BLIT_CTRL` register and is the transparent value for even and odd 4-bit pixels or a single 8-bit pixel value (when `TRANSP8` set).
+- `TRANSP` will enable transparency testing when set (when zero, no pixel values will be masked, but start and end of line masking will still be applied)
+- `TRANSP8` enables 8-bit transparency test.  When in 8-bit transparency mode, the 8-bit pixel value is compared to 8-bit transparency value and both nibbles masked or not.  In 4-bit mode, even and odd 4-bit pixels are compared against either the upper or lower 4-bits of the transparency value (so 4-bit pixels have an independent transparency color for even and odd pixels).
+- `T` transparency value is set in with the upper 8 bits of `XR_BLIT_CTRL` register and is the transparent value for even and odd 4-bit pixels or a single 8-bit pixel value (when `TRANSP8` set).
 
 ##### 0x41 **`XR_BLIT_ANDC` (-/W)** - source term ANDC value constant
 
