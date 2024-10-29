@@ -51,10 +51,10 @@
     - [Color Memory ARGB Look-up and Playfield A B Blending](#color-memory-argb-look-up-and-playfield-a-b-blending)
       - [**`COLOR_A`** and **`COLOR_B`** colormap format](#color_a-and-color_b-colormap-format)
       - [Audio Generation XR Registers](#audio-generation-xr-registers)
-        - [**`XR_AUD0_VOL`** 0x20/0x24/0x28/0x2C (-/W) - audio channel 0-3 left/right mix volume](#xr_aud0_vol-0x200x240x280x2c--w---audio-channel-0-3-leftright-mix-volume)
-        - [**`XR_AUD0_PERIOD`** 0x21/0x25/0x29/0x2D (-/W) - audio channel 0-3 sample period](#xr_aud0_period-0x210x250x290x2d--w---audio-channel-0-3-sample-period)
-        - [**`XR_AUD0_LENGTH`** 0x22/0x26/0x2A/0x2E (-/W) - audio channel 0-3 sample word length and VRAM/TILE memory](#xr_aud0_length-0x220x260x2a0x2e--w---audio-channel-0-3-sample-word-length-and-vramtile-memory)
-        - [**`XR_AUD0_START`** 0x23/0x27/0x2B/0x2F (-/W) - audio channel 0-3 sample start address (in either VRAM/TILE)](#xr_aud0_start-0x230x270x2b0x2f--w---audio-channel-0-3-sample-start-address-in-either-vramtile)
+        - [**`XR_AUDn_VOL`** 0x20/0x24/0x28/0x2C (-/W) - audio channel 0-3 left/right mix volume](#xr_audn_vol-0x200x240x280x2c--w---audio-channel-0-3-leftright-mix-volume)
+        - [**`XR_AUDn_PERIOD`** 0x21/0x25/0x29/0x2D (-/W) - audio channel 0-3 sample period](#xr_audn_period-0x210x250x290x2d--w---audio-channel-0-3-sample-period)
+        - [**`XR_AUDn_LENGTH`** 0x22/0x26/0x2A/0x2E (-/W) - audio channel 0-3 sample word length and VRAM/TILE memory](#xr_audn_length-0x220x260x2a0x2e--w---audio-channel-0-3-sample-word-length-and-vramtile-memory)
+        - [**`XR_AUDn_START`** 0x23/0x27/0x2B/0x2F (-/W) - audio channel 0-3 sample start address (in either VRAM/TILE)](#xr_audn_start-0x230x270x2b0x2f--w---audio-channel-0-3-sample-start-address-in-either-vramtile)
       - [2D Blitter Engine XR Registers](#2d-blitter-engine-xr-registers)
         - [**`XR_BLIT_CTRL`** 0x40 (-/W) - control bits (transparency control, S const)](#xr_blit_ctrl-0x40--w---control-bits-transparency-control-s-const)
         - [**`XR_BLIT_ANDC`** 0x41 (-/W) - source term ANDC value constant](#xr_blit_andc-0x41--w---source-term-andc-value-constant)
@@ -304,19 +304,19 @@ ___
 
 #### Audio Generation XR Registers
 
-##### **`XR_AUD0_VOL`** 0x20/0x24/0x28/0x2C (-/W) - audio channel 0-3 left/right mix volume  
+##### **`XR_AUDn_VOL`** 0x20/0x24/0x28/0x2C (-/W) - audio channel 0-3 left/right mix volume  
 
 ![XR_AUDn_VOL register diagram](./pics/wd_XR_AUDn_VOL.svg)
 
-##### **`XR_AUD0_PERIOD`** 0x21/0x25/0x29/0x2D (-/W) - audio channel 0-3 sample period
+##### **`XR_AUDn_PERIOD`** 0x21/0x25/0x29/0x2D (-/W) - audio channel 0-3 sample period
 
 ![XR_AUDn_PERIOD register diagram](./pics/wd_XR_AUDn_PERIOD.svg)
 
-##### **`XR_AUD0_LENGTH`** 0x22/0x26/0x2A/0x2E (-/W) - audio channel 0-3 sample word length and VRAM/TILE memory
+##### **`XR_AUDn_LENGTH`** 0x22/0x26/0x2A/0x2E (-/W) - audio channel 0-3 sample word length and VRAM/TILE memory
 
 ![XR_AUDn_LENGTH register diagram](./pics/wd_XR_AUDn_LENGTH.svg)
 
-##### **`XR_AUD0_START`** 0x23/0x27/0x2B/0x2F (-/W) - audio channel 0-3 sample start address (in either VRAM/TILE)
+##### **`XR_AUDn_START`** 0x23/0x27/0x2B/0x2F (-/W) - audio channel 0-3 sample start address (in either VRAM/TILE)
 
 ![XR_AUDn_START register diagram](./pics/wd_XR_AUDn_START.svg)
 ___
