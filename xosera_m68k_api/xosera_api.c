@@ -184,11 +184,16 @@ bool xosera_wait_sync(void)
 // NOTE: May BUS ERROR if no hardware present
 bool xosera_init(xosera_mode_t init_mode)
 {
-    bool detected = xosera_wait_sync();
+    // set XM_BASE_PTR (aka VDB_XOSERBASE) for older firmware (assumes older Xosera card)
+    if (*((uint32_t *)0x1140) != 0xC0C010C0)        // if no "magic", assume VDB_XOSERBASE needs to be set
+    {
+        *((uint32_t *)XM_BASE_PTR) = 0xf80060;        // assume old Xosera card address?
+    }
+    xv_prep();
 
+    bool detected = xosera_wait_sync();
     if (detected)
     {
-        xv_prep();
         xwait_not_vblank();
         xwait_vblank();
         if (init_mode >= XINIT_CONFIG_640x480)

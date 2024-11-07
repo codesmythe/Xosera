@@ -24,6 +24,7 @@ include $(XOSERA_EXTRA)/common_xosera.mk
 CINCLUDES=rosco_m68k/xosera.h rosco_m68k/xosera_defs.h rosco_m68k/xosera_defs.inc
 LIBRARY=rosco_m68k/lib$(PROGRAM_BASENAME).a
 LINKOBJECTS=$(filter-out api_test.o,$(OBJECTS))
+EXTRA_CFLAGS+=-Os
 
 all: checklib $(LIBRARY) $(BINARY) $(DISASM)
 
